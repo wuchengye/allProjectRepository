@@ -36,40 +36,55 @@ public class JDDetailPipeline implements Pipeline {
             //渠道：京东
             itemEntity.setChannel("京东");
             //手机颜色
-            itemEntity.setColor(map.get("color").toString().trim());
+            if(map.get("color") != null){
+                itemEntity.setColor(map.get("color").toString().trim());
+            }
             //手机规格：如8GB+128GB
-            itemEntity.setSpecs(map.get("specs").toString().trim());
+            if(map.get("specs") != null){
+                itemEntity.setSpecs(map.get("specs").toString().trim());
+            }
             //京东商品标题
-            itemEntity.setItemFullName(map.get("title").toString().trim());
+            if(map.get("title") != null){
+                itemEntity.setItemFullName(map.get("title").toString().trim());
+            }
             //品牌
-            itemEntity.setBrand(map.get("brand").toString().trim());
+            if(map.get("brand") != null){
+                itemEntity.setBrand(map.get("brand").toString().trim());
+            }
             //型号:如P40
-            itemEntity.setModel(map.get("model").toString().trim());
+            if(map.get("model") != null){
+                itemEntity.setModel(map.get("model").toString().trim());
+            }
             //制式
-            itemEntity.setFormat(CommonUtils.regexFormat(map.get("title").toString()));
+            if (map.get("title") != null){
+                itemEntity.setFormat(CommonUtils.regexFormat(map.get("title").toString()));
+            }
             //url，商品的京东详情链接
             itemEntity.setItemUrl(resultItems.getRequest().getUrl());
             //累计评价
-            itemEntity.setSalesVolume(map.get("salesVolume").toString().trim());
-
+            if(map.get("salesVolume") != null){
+                itemEntity.setSalesVolume(map.get("salesVolume").toString().trim());
+            }
 
 
             //当前价格
-            priceEntity.setPrice(Double.valueOf(map.get("price").toString()));
+            if(map.get("price") != null){
+                priceEntity.setPrice(Double.valueOf(map.get("price").toString()));
+            }
             //原始价格
             if(map.get("originPrice").toString() != null){
                 priceEntity.setPreferentialType("秒杀 ");
             }
             //优惠券
             List<String> quan = (List<String>) map.get("youhuiquan");
-            if(quan.size() > 0){
+            if(quan != null && quan.size() > 0){
                 String temp = priceEntity.getPreferentialType();
                 temp+="优惠券";
                 priceEntity.setPreferentialType(temp);
             }
             //赠品
             List<String> gift = (List<String>) map.get("gift");
-            if(gift.size() > 0){
+            if(gift != null && gift.size() > 0){
                 priceEntity.setHaveGift("是");
             }else {
                 priceEntity.setHaveGift("否");

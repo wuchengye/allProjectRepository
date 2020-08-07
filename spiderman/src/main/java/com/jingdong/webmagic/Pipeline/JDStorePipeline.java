@@ -18,7 +18,7 @@ public class JDStorePipeline implements Pipeline {
         for (Map.Entry<String, Object> entry : resultItems.getAll().entrySet()) {
             List<String> urls = (List<String>) entry.getValue();
             for (String url : urls){
-                url.replace(" ","");
+                url = url.replace(" ","");
                 list.add("https:" + url);
             }
         }

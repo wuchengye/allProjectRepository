@@ -76,12 +76,14 @@ public class CommonUtils {
     //返回最低价格
     public static Double calcMinNum(Double price,List<Map<String,Double>> mapList){
         Double min = price;
-        for(Map<String,Double> m : mapList){
-            if(m.get("man") != null && m.get("jian") != null){
-                if(price >= m.get("man")){
-                    Double temp = price - m.get("jian");
-                    if(temp < min){
-                        min = temp;
+        if(price != null){
+            for(Map<String,Double> m : mapList){
+                if(m.get("man") != null && m.get("jian") != null){
+                    if(price >= m.get("man")){
+                        Double temp = price - m.get("jian");
+                        if(temp < min){
+                            min = temp;
+                        }
                     }
                 }
             }
