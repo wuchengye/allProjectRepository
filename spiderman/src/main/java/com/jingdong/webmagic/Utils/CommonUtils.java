@@ -90,4 +90,12 @@ public class CommonUtils {
         }
         return min;
     }
+
+    //判断官网详情页面
+    public static String brandOfUrl(String url){
+        if(url.contains("www.vmall.com")){
+            return "HUAWEI";
+        }
+        return "";
+    }
 }

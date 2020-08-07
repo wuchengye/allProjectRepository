@@ -56,18 +56,18 @@ public class ChromeDownloader extends AbstractDownloader {
 
     }
 
-    public WebDriver getChromeDriver() throws IOException {
+    public static WebDriver getChromeDriver() throws IOException {
         if(service == null){
-            //System.setProperty("webdriver.chrome.driver","C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe");
-            //service = new ChromeDriverService.Builder().usingDriverExecutable(new File("D:\\All Downloads\\chromedriver.exe")).usingAnyFreePort().build();
-            System.setProperty("webdriver.chrome.driver","/opt/google/chrome/google-chrome");
-            service = new ChromeDriverService.Builder().usingDriverExecutable(new File("/home/jingdongpachong/chromedriver")).usingAnyFreePort().build();
+            System.setProperty("webdriver.chrome.driver","C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe");
+            service = new ChromeDriverService.Builder().usingDriverExecutable(new File("D:\\All Downloads\\chromedriver.exe")).usingAnyFreePort().build();
+            //System.setProperty("webdriver.chrome.driver","/opt/google/chrome/google-chrome");
+            //service = new ChromeDriverService.Builder().usingDriverExecutable(new File("/home/jingdongpachong/chromedriver")).usingAnyFreePort().build();
         }
         if(!service.isRunning()){
             service.start();
         }
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--no-sandbox");//centos7配置
+        //chromeOptions.addArguments("--no-sandbox");//centos7配置
         chromeOptions.addArguments("--headless");
         //chromeOptions.addArguments("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36");
         chromeOptions.addArguments("--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36");

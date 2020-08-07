@@ -17,6 +17,12 @@ public class Constant {
     public final static String JD_OPPO="https://mall.jd.com/index-1000004065.html";
 
     /**
+     * @date 2020-08-05 14:57
+     * 官网地址
+     */
+    public final static String HUAWEI="https://www.vmall.com/list-36";
+
+    /**
      * @date 2020-07-09 16:55
      * 品牌 正则匹配商品标题
      */
