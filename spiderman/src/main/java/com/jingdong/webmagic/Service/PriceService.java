@@ -88,7 +88,6 @@ public class PriceService {
                     if(dateEnd != null && !dateEnd.equals("")){
                         try {
                             end = format.parse(dateEnd);
-                            end.setTime(end.getTime() + 86400000L);
                         } catch (ParseException e) {}
                     }
                     conditions.add(criteriaBuilder.and(criteriaBuilder.between(root.<Date>get("date"),start,end)));
@@ -209,7 +208,6 @@ public class PriceService {
                         try {
                             Date start = format.parse(map.get("date1"));
                             Date end = format.parse(map.get("date2"));
-                            end.setTime(end.getTime() + 86400000L);
                             conditions.add(criteriaBuilder.and(criteriaBuilder.between(root.<Date>get("date"),start,end)));
                         }catch (ParseException e){}
                     }
