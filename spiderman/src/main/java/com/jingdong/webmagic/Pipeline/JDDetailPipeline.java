@@ -36,11 +36,11 @@ public class JDDetailPipeline implements Pipeline {
             //渠道：京东
             itemEntity.setChannel("京东");
             //手机颜色
-            if(map.get("color") != null){
+            if(map.get("color") != null && map.get("color").toString() != null){
                 itemEntity.setColor(map.get("color").toString().trim());
             }
             //手机规格：如8GB+128GB
-            if(map.get("specs") != null){
+            if(map.get("specs") != null && map.get("specs").toString() != null){
                 itemEntity.setSpecs(map.get("specs").toString().trim());
             }
             //京东商品标题

@@ -4,8 +4,6 @@
     <list default="true" id="d5ecbfec-2679-4054-8d1b-fba679e5e01d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Pipeline/JDDetailPipeline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Pipeline/JDDetailPipeline.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Pipeline/JDStorePipeline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Pipeline/JDStorePipeline.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Utils/CommonUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Utils/CommonUtils.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -185,7 +183,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
