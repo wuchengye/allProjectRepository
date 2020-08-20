@@ -7,8 +7,11 @@ public enum ResultCode {
     FAILURE(0, "失败"),
 
     USER_NOT_EXIST(1000,"用户不存在"),
-    USER_PASSWORD_ERROR(1001,"密码错误"),
-    USER_EXIST(1002,"用户存在");
+    USER_PASSWORD_ERROR(1001,"密码或验证码错误"),
+    USER_EXIST(1002,"用户存在"),
+    CODE_NULL(1003,"验证码为空"),
+    CODE_TIMEOUT(1004,"验证码过期");
+
 
     private Integer code;
     private String message;

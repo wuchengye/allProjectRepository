@@ -7,6 +7,7 @@ import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.jingdong.webmagic.Model.UserEntity;
 import com.jingdong.webmagic.Service.UserService;
+import com.jingdong.webmagic.Utils.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -19,6 +20,8 @@ import java.lang.reflect.Method;
 public class AuthenticationInterceptor implements HandlerInterceptor {
     @Autowired
     private UserService userService;
+    @Autowired
+    private RedisUtil redisUtil;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object object) throws Exception {
@@ -49,7 +52,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                 try {
                     userName = JWT.decode(token).getAudience().get(0);
                 } catch (JWTDecodeException j) {
-                    throw new RuntimeException("401");
+                    throw new RuntimeException("无效token");
                 }
                 UserEntity user = userService.findUserByName(userName);
                 if (user == null) {
@@ -60,7 +63,14 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                 try {
                     jwtVerifier.verify(token);
                 } catch (JWTVerificationException e) {
-                    throw new RuntimeException("401");
+                    throw new RuntimeException("token验证失败");
+                }
+                String redisToken = redisUtil.get(userName);
+                System.out.println(redisToken);
+                if(redisToken == null || !redisToken.equals(token)){
+                    throw new RuntimeException("token错误或过期");
+                }else {
+                    redisUtil.expire(userName,600L);
                 }
                 return true;
             }

@@ -3,7 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="d5ecbfec-2679-4054-8d1b-fba679e5e01d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Pipeline/JDDetailPipeline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Pipeline/JDDetailPipeline.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Annotation/AuthenticationInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Annotation/AuthenticationInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/RESTful/ResultCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/RESTful/ResultCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -54,9 +59,9 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../IntelligentInspectionForSpringBoot" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.4275862" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -78,7 +83,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.WebmagicApplication">
+  <component name="RunManager" selected="Spring Boot.WebmagicApplication (1)">
     <configuration name="JDDetailPageProcessor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.jingdong.webmagic.PageProcessor.JDDetailPageProcessor" />
       <module name="JD" />
@@ -133,8 +138,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.WebmagicApplication" />
         <item itemvalue="Spring Boot.WebmagicApplication (1)" />
+        <item itemvalue="Application.WebmagicApplication" />
         <item itemvalue="Spring Boot.WebmagicApplication" />
         <item itemvalue="Application.JDDetailPageProcessor" />
       </list>
@@ -172,6 +177,7 @@
       <workItem from="1595584002326" duration="80000" />
       <workItem from="1595812699448" duration="11584000" />
       <workItem from="1596784960203" duration="1980000" />
+      <workItem from="1597827693192" duration="18200000" />
     </task>
     <servers />
   </component>
