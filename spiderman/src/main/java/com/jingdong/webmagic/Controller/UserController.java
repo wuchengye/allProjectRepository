@@ -54,7 +54,7 @@ public class UserController {
         }
         String token = userService.getToken(user);
         //存入缓存
-        redisUtil.set(user.getUserName(),token,600L);
+        redisUtil.set(user.getUserName(),token,1800L);
         user.setPassWord("");
         return Result.success(token,user);
     }

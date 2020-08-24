@@ -6,8 +6,7 @@
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Annotation/AuthenticationInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Annotation/AuthenticationInterceptor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/RESTful/ResultCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/RESTful/ResultCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/PageProcessor/JDStorePageProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/PageProcessor/JDStorePageProcessor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -177,7 +176,9 @@
       <workItem from="1595584002326" duration="80000" />
       <workItem from="1595812699448" duration="11584000" />
       <workItem from="1596784960203" duration="1980000" />
-      <workItem from="1597827693192" duration="18200000" />
+      <workItem from="1597827693192" duration="20636000" />
+      <workItem from="1597974376749" duration="7283000" />
+      <workItem from="1598231737425" duration="1002000" />
     </task>
     <servers />
   </component>

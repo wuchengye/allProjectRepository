@@ -48,14 +48,19 @@ public class JDStorePageProcessor implements PageProcessor {
 
     private void doVivo(Page page) {
         System.out.println("京东vivo官方旗舰店");
-        //X50新品
-        page.putField("X50",page.getHtml().xpath("div [@class='nav abs']/div[1]//div [@class='rel']//a/@href").all());
+        //X系列
+        page.putField("X系列",page.getHtml().xpath("div [@class='nav abs']/div[1]//div [@class='rel']//a/@href").all());
+        //iQOO
+        page.putField("iQOO",page.getHtml().xpath("div [@class='nav abs']/div[2]//div [@class='rel']//a/@href").all());
         //S系列
-        page.putField("S",page.getHtml().xpath("div [@class='nav abs']/div[2]//div [@class='rel']//a/@href").all());
-        //NEX系列
-        page.putField("NEX",page.getHtml().xpath("div [@class='nav abs']/div[3]//div [@class='rel']//a/@href").all());
+        page.putField("S系列",page.getHtml().xpath("div [@class='nav abs']/div[3]//div [@class='rel']//a/@href").all());
+        //Z/U系列
+        page.putField("Z/U系列",page.getHtml().xpath("div [@class='nav abs']/div[4]//div [@class='rel']//a/@href").all());
         //Y系列
-        page.putField("Y",page.getHtml().xpath("div [@class='nav abs']/div[4]//div [@class='rel']//a/@href").all());
+        page.putField("Y系列",page.getHtml().xpath("div [@class='nav abs']/div[5]//div [@class='rel']//a/@href").all());
+        //NEX系列
+        page.putField("NEX系列",page.getHtml().xpath("div [@class='nav abs']/div[6]//div [@class='rel']//a/@href").all());
+
     }
 
     private void doApple(Page page) {

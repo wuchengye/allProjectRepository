@@ -66,11 +66,10 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                     throw new RuntimeException("token验证失败");
                 }
                 String redisToken = redisUtil.get(userName);
-                System.out.println(redisToken);
                 if(redisToken == null || !redisToken.equals(token)){
                     throw new RuntimeException("token错误或过期");
                 }else {
-                    redisUtil.expire(userName,600L);
+                    redisUtil.expire(userName,1800L);
                 }
                 return true;
             }
