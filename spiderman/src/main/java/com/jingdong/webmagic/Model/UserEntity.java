@@ -48,4 +48,14 @@ public class UserEntity {
     public void setRecord(String record) {
         this.record = record;
     }
+
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", passWord='" + passWord + '\'' +
+                ", record='" + record + '\'' +
+                '}';
+    }
 }

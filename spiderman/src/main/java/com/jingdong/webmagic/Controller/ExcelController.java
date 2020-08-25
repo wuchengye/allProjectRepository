@@ -3,6 +3,7 @@ package com.jingdong.webmagic.Controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
+import com.jingdong.webmagic.Annotation.LogOperator;
 import com.jingdong.webmagic.Annotation.UserLoginToken;
 import com.jingdong.webmagic.Model.PriceEntity;
 import com.jingdong.webmagic.RESTful.Result;
@@ -37,6 +38,7 @@ public class ExcelController {
 
     @PostMapping("/uploadExcel")
     @UserLoginToken
+    @LogOperator(method = "导入Excel文档查找")
     @ResponseBody
     public Result uploadExcel(@RequestBody MultipartFile file) throws Exception{
         if(file.isEmpty()){
@@ -52,6 +54,7 @@ public class ExcelController {
     }
 
     @RequestMapping("/downloadTemplate")
+    @LogOperator(method = "下载模板")
     @UserLoginToken
     public void downloadTemplate(HttpServletResponse response) throws Exception {
         //获取静态文件路径
@@ -69,6 +72,7 @@ public class ExcelController {
     }
 
     @RequestMapping("/exportExcel")
+    @LogOperator(method = "手机条目导出Excel")
     @UserLoginToken
     public void exportExcel(@RequestParam(name = "_brands",required = false) List<String> _brands,
                             @RequestParam(name = "_models",required = false) List<String> _models,
@@ -191,8 +195,12 @@ public class ExcelController {
             row1.createCell(3).setCellValue(p.getItemEntity().getSpecs());
             row1.createCell(4).setCellValue(p.getItemEntity().getColor());
             row1.createCell(5).setCellValue(p.getItemEntity().getFormat());
-            row1.createCell(6).setCellValue(p.getPrice());
-            row1.createCell(7).setCellValue(p.getReferPrice());
+            if(p.getPrice() != null){
+                row1.createCell(6).setCellValue(p.getPrice());
+            }
+            if(p.getReferPrice() != null){
+                row1.createCell(7).setCellValue(p.getReferPrice());
+            }
             row1.createCell(8).setCellValue(p.getPreferentialDetail());
             row1.createCell(9).setCellValue(p.getPreferentialType());
             row1.createCell(10).setCellValue(p.getItemEntity().getSalesVolume());

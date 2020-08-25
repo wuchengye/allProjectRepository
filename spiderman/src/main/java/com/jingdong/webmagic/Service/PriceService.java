@@ -78,7 +78,7 @@ public class PriceService {
                 }
                 if(dateStart != null || dateEnd != null ){
                     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-                    Date start = new Date(946656000000L);;
+                    Date start = new Date(946656000000L);
                     Date end = new Date();
                     if(dateStart != null && !dateStart.equals("")){
                         try {

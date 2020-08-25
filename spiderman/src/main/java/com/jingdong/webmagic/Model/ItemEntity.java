@@ -113,4 +113,21 @@ public class ItemEntity {
     public void setPriceEntityList(List<PriceEntity> priceEntityList) {
         this.priceEntityList = priceEntityList;
     }
+
+    @Override
+    public String toString() {
+        return "ItemEntity{" +
+                "itemId=" + itemId +
+                ", channel='" + channel + '\'' +
+                ", brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", specs='" + specs + '\'' +
+                ", color='" + color + '\'' +
+                ", format='" + format + '\'' +
+                ", itemFullName='" + itemFullName + '\'' +
+                ", salesVolume='" + salesVolume + '\'' +
+                ", itemUrl='" + itemUrl + '\'' +
+                ", priceEntityList=" + priceEntityList +
+                '}';
+    }
 }

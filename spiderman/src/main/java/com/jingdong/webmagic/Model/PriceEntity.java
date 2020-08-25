@@ -94,4 +94,18 @@ public class PriceEntity {
     public void setReferPrice(Double referPrice) {
         this.referPrice = referPrice;
     }
+
+    @Override
+    public String toString() {
+        return "PriceEntity{" +
+                "priceId=" + priceId +
+                ", price=" + price +
+                ", referPrice=" + referPrice +
+                ", haveGift='" + haveGift + '\'' +
+                ", preferentialType='" + preferentialType + '\'' +
+                ", preferentialDetail='" + preferentialDetail + '\'' +
+                ", date=" + date +
+                ", itemEntity=" + itemEntity +
+                '}';
+    }
 }

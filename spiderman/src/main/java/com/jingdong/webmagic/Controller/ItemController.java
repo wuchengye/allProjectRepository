@@ -1,5 +1,6 @@
 package com.jingdong.webmagic.Controller;
 
+import com.jingdong.webmagic.Annotation.LogOperator;
 import com.jingdong.webmagic.Annotation.UserLoginToken;
 import com.jingdong.webmagic.Model.ItemEntity;
 import com.jingdong.webmagic.Model.PriceEntity;
@@ -31,6 +32,7 @@ public class ItemController {
 
     @RequestMapping("/getInfo")
     @UserLoginToken
+    @LogOperator(method = "获取手机条目")
     @ResponseBody
     public Result getInfo(@RequestParam(name = "_brands",required = false) List<String> _brands,
                           @RequestParam(name = "_models",required = false) List<String> _models,
@@ -46,6 +48,7 @@ public class ItemController {
 
     @RequestMapping("/selectBrands")
     @UserLoginToken
+    @LogOperator(method = "查找手机品牌")
     @ResponseBody
     public Result selectBrands(){
         List<String> brands = itemService.selectBrands();
@@ -54,6 +57,7 @@ public class ItemController {
 
     @RequestMapping("/selectModels")
     @UserLoginToken
+    @LogOperator(method = "查找手机型号")
     @ResponseBody
     public Result selectModels(@RequestParam(name = "_brands",required = true) List<String> _brands){
         Map<String,List<String>> models = itemService.selectModels(_brands);
@@ -62,6 +66,7 @@ public class ItemController {
 
     @RequestMapping("/selectSpecs")
     @UserLoginToken
+    @LogOperator(method = "查找手机规格")
     @ResponseBody
     public Result selectSpecs(@RequestParam(name = "_brands",required = true) List<String> _brands,
                               @RequestParam(name = "_models",required = true) List<String> _models){
@@ -71,6 +76,7 @@ public class ItemController {
 
     @RequestMapping("/priceTrend")
     @UserLoginToken
+    @LogOperator(method = "获取近期价格趋势")
     @ResponseBody
     public Result priceTrend(@RequestParam(name = "itemId",required = true) Long itemId){
         List<PriceEntity> list = priceService.findByItemId(itemId);

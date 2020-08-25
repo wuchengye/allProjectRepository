@@ -1,5 +1,6 @@
 package com.jingdong.webmagic.Controller;
 
+import com.jingdong.webmagic.Annotation.LogOperator;
 import com.jingdong.webmagic.Annotation.PassToken;
 import com.jingdong.webmagic.Annotation.UserLoginToken;
 import com.jingdong.webmagic.Model.UserEntity;
@@ -8,10 +9,10 @@ import com.jingdong.webmagic.RESTful.ResultCode;
 import com.jingdong.webmagic.Service.UserService;
 import com.jingdong.webmagic.Utils.CodeUtil;
 import com.jingdong.webmagic.Utils.RedisUtil;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import sun.misc.BASE64Encoder;
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
@@ -19,7 +20,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
+
 
 @RestController
 @RequestMapping("/User")
@@ -32,6 +33,7 @@ public class UserController {
 
     @PostMapping("/login")
     @PassToken
+    @LogOperator(method = "登录")
     @ResponseBody
     public Result login(UserEntity userEntity,String codeKey,String code){
         if(code == null){
@@ -55,12 +57,15 @@ public class UserController {
         String token = userService.getToken(user);
         //存入缓存
         redisUtil.set(user.getUserName(),token,1800L);
-        user.setPassWord("");
-        return Result.success(token,user);
+        UserEntity result = new UserEntity();
+        BeanUtils.copyProperties(user,result);
+        result.setPassWord("");
+        return Result.success(token,result);
     }
 
     @RequestMapping("/getCode")
     @PassToken
+    @LogOperator(method = "获取验证码")
     @ResponseBody
     public Result getCode(){
         Map map = CodeUtil.generateCodeAndPic();
@@ -84,6 +89,7 @@ public class UserController {
 
     @PostMapping("/register")
     @PassToken
+    @LogOperator(method = "注册")
     @ResponseBody
     public Result register(UserEntity userEntity){
         List<UserEntity> list = userService.repeatUserByName(userEntity.getUserName());
@@ -99,6 +105,7 @@ public class UserController {
 
     @PostMapping("/getRecord")
     @UserLoginToken
+    @LogOperator(method = "获取配置记录")
     @ResponseBody
     public Result getRecord(Long userId){
         UserEntity userEntity = userService.findUserById(userId);
@@ -108,9 +115,9 @@ public class UserController {
         return Result.success(userEntity.getRecord());
     }
 
-
     @PostMapping("/setRecord")
     @UserLoginToken
+    @LogOperator(method = "保存配置记录")
     @ResponseBody
     public Result setRecord(UserEntity userEntity){
         UserEntity u = userService.findUserById(userEntity.getUserId());
@@ -118,4 +125,5 @@ public class UserController {
         userService.insertUser(u);
         return Result.success();
     }
+
 }

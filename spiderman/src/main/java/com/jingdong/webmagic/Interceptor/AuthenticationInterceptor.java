@@ -1,10 +1,12 @@
-package com.jingdong.webmagic.Annotation;
+package com.jingdong.webmagic.Interceptor;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.jingdong.webmagic.Annotation.PassToken;
+import com.jingdong.webmagic.Annotation.UserLoginToken;
 import com.jingdong.webmagic.Model.UserEntity;
 import com.jingdong.webmagic.Service.UserService;
 import com.jingdong.webmagic.Utils.RedisUtil;

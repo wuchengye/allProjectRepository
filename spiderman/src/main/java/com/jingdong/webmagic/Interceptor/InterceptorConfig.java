@@ -1,4 +1,4 @@
-package com.jingdong.webmagic.Annotation;
+package com.jingdong.webmagic.Interceptor;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

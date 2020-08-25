@@ -4,9 +4,15 @@
     <list default="true" id="d5ecbfec-2679-4054-8d1b-fba679e5e01d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Annotation/AuthenticationInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Annotation/AuthenticationInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Annotation/AuthenticationInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Interceptor/AuthenticationInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Annotation/InterceptorConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Interceptor/InterceptorConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Controller/ExcelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Controller/ExcelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Controller/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Controller/ItemController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/PageProcessor/JDStorePageProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/PageProcessor/JDStorePageProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Model/ItemEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Model/ItemEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Model/PriceEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Model/PriceEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Model/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Model/UserEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Service/PriceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Service/PriceService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -63,7 +69,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.4275862" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.textmate.bundles" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -178,7 +184,7 @@
       <workItem from="1596784960203" duration="1980000" />
       <workItem from="1597827693192" duration="20636000" />
       <workItem from="1597974376749" duration="7283000" />
-      <workItem from="1598231737425" duration="1002000" />
+      <workItem from="1598231737425" duration="37900000" />
     </task>
     <servers />
   </component>
@@ -197,5 +203,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/jingdong$WebmagicApplication__1_.ic" NAME="WebmagicApplication (1) Coverage Results" MODIFIED="1598337321149" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.jingdong.webmagic.*</FILTER>
+    </SUITE>
   </component>
 </project>
