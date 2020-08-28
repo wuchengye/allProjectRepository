@@ -12,10 +12,7 @@ import org.apache.regexp.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.nio.file.Path;
 import java.util.List;
@@ -34,7 +31,8 @@ public class ItemController {
     @UserLoginToken
     @LogOperator(method = "获取手机条目")
     @ResponseBody
-    public Result getInfo(@RequestParam(name = "_brands",required = false) List<String> _brands,
+    public Result getInfo(@RequestParam(name = "_channel",required = false) List<String> _channels,
+                          @RequestParam(name = "_brands",required = false) List<String> _brands,
                           @RequestParam(name = "_models",required = false) List<String> _models,
                           @RequestParam(name = "_specs",required = false) List<String> _specs,
                           @RequestParam(name = "_price_low",required = false) Double _price_low,
@@ -42,16 +40,25 @@ public class ItemController {
                           @RequestParam(name = "_date_start",required = false) String _date_start,
                           @RequestParam(name = "_date_end",required = false) String _date_end,
                           Pageable page){
-        Page<PriceEntity> pageList = priceService.getInfoByWhere(_brands,_models,_specs,_price_low,_price_high,_date_start,_date_end,page);
+        Page<PriceEntity> pageList = priceService.getInfoByWhere(_channels,_brands,_models,_specs,_price_low,_price_high,_date_start,_date_end,page);
         return Result.success(pageList);
+    }
+
+    @RequestMapping("/selectChannels")
+    @UserLoginToken
+    @LogOperator(method = "查找渠道")
+    @ResponseBody
+    public Result selectChannels(){
+        List<String> channels = itemService.selectChannels();
+        return Result.success(channels);
     }
 
     @RequestMapping("/selectBrands")
     @UserLoginToken
     @LogOperator(method = "查找手机品牌")
     @ResponseBody
-    public Result selectBrands(){
-        List<String> brands = itemService.selectBrands();
+    public Result selectBrands(@RequestParam(name = "_channels",required = true) List<String> _channels){
+        Map<String,List<String>> brands = itemService.selectBrands(_channels);
         return Result.success(brands);
     }
 
@@ -59,8 +66,9 @@ public class ItemController {
     @UserLoginToken
     @LogOperator(method = "查找手机型号")
     @ResponseBody
-    public Result selectModels(@RequestParam(name = "_brands",required = true) List<String> _brands){
-        Map<String,List<String>> models = itemService.selectModels(_brands);
+    public Result selectModels(@RequestParam(name = "_channels",required = true) List<String> _channels,
+                               @RequestParam(name = "_brands",required = true) List<String> _brands){
+        Map<String,List<String>> models = itemService.selectModels(_channels,_brands);
         return Result.success(models);
     }
 
@@ -68,9 +76,10 @@ public class ItemController {
     @UserLoginToken
     @LogOperator(method = "查找手机规格")
     @ResponseBody
-    public Result selectSpecs(@RequestParam(name = "_brands",required = true) List<String> _brands,
+    public Result selectSpecs(@RequestParam(name = "_channels",required = true) List<String> _channels,
+                              @RequestParam(name = "_brands",required = true) List<String> _brands,
                               @RequestParam(name = "_models",required = true) List<String> _models){
-        Map<String,List<String>> specs = itemService.selectSpecs(_brands,_models);
+        Map<String,List<String>> specs = itemService.selectSpecs(_channels,_brands,_models);
         return Result.success(specs);
     }
 

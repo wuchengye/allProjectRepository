@@ -74,7 +74,8 @@ public class ExcelController {
     @RequestMapping("/exportExcel")
     @LogOperator(method = "手机条目导出Excel")
     @UserLoginToken
-    public void exportExcel(@RequestParam(name = "_brands",required = false) List<String> _brands,
+    public void exportExcel(@RequestParam(name = "_channels",required = false)List<String> _channels,
+                            @RequestParam(name = "_brands",required = false) List<String> _brands,
                             @RequestParam(name = "_models",required = false) List<String> _models,
                             @RequestParam(name = "_specs",required = false) List<String> _specs,
                             @RequestParam(name = "_price_low",required = false) Double _price_low,
@@ -85,7 +86,7 @@ public class ExcelController {
                             HttpServletResponse response) throws IOException {
         List<PriceEntity> list = new ArrayList<>();
         if(importExcelData == null || importExcelData.size() == 0 ){
-            list =  priceService.exportItemPrice(_brands,_models,_specs,_price_low,_price_high,_date_start,_date_end);
+            list =  priceService.exportItemPrice(_channels,_brands,_models,_specs,_price_low,_price_high,_date_start,_date_end);
         }else {
             Gson gson = new Gson();
             List<Map<String,String >> mapList = new ArrayList<>();

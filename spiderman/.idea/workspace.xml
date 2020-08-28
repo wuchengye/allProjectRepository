@@ -2,18 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d5ecbfec-2679-4054-8d1b-fba679e5e01d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/webmagic_core_0_7_3.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Annotation/AuthenticationInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Interceptor/AuthenticationInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Annotation/InterceptorConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Interceptor/InterceptorConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Constant/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Constant/Constant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Controller/ExcelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Controller/ExcelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Controller/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Controller/ItemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Model/ItemEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Model/ItemEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Model/PriceEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Model/PriceEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Model/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Model/UserEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Downloader/ChromeDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Downloader/ChromeDownloader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Repository/ItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Repository/ItemRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Scheduled/SpiderScheduled.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Scheduled/SpiderScheduled.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Service/ItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Service/ItemService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Service/PriceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Service/PriceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Utils/CommonUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Utils/CommonUtils.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -64,7 +64,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../IntelligentInspectionForSpringBoot" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/webmagic-core-0.7.3.jar!/" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -72,6 +72,16 @@
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.textmate.bundles" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Projects\GuangZhou\allProjectRepository\spiderman\src\main\java\com\jingdong\webmagic\Pipeline" />
+      <recent name="D:\Projects\GuangZhou\allProjectRepository\spiderman\src\main\java\com\jingdong\webmagic\PageProcessor" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.jingdong.webmagic.Service" />
+      <recent name="com.jingdong.webmagic.Repository" />
+      <recent name="com.jingdong.webmagic.Model" />
+      <recent name="com.jingdong.webmagic.Downloader" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Projects\GuangZhou\JD\src\main\resources\template" />
     </key>
@@ -184,7 +194,9 @@
       <workItem from="1596784960203" duration="1980000" />
       <workItem from="1597827693192" duration="20636000" />
       <workItem from="1597974376749" duration="7283000" />
-      <workItem from="1598231737425" duration="37900000" />
+      <workItem from="1598231737425" duration="38192000" />
+      <workItem from="1598406259948" duration="4599000" />
+      <workItem from="1598515346709" duration="13675000" />
     </task>
     <servers />
   </component>

@@ -34,11 +34,20 @@ public class PriceService {
 
 
     //分页查看
-    public Page<PriceEntity> getInfoByWhere(List<String> brands, List<String> models, List<String> specs, Double priceLow, Double priceHigh, String dateStart, String dateEnd, Pageable page) {
+    public Page<PriceEntity> getInfoByWhere(List<String> channels,List<String> brands, List<String> models, List<String> specs, Double priceLow, Double priceHigh, String dateStart, String dateEnd, Pageable page) {
         Page<PriceEntity> pageList = priceRepository.findAll(new Specification<PriceEntity>(){
             @Override
             public Predicate toPredicate(Root<PriceEntity> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
                 List<Predicate> conditions = new ArrayList<>();
+                if(channels != null && channels.size() > 0){
+                    Join<ItemEntity,PriceEntity> join = root.join("itemEntity",JoinType.LEFT);
+                    Path<String> path = join.get("channel");
+                    CriteriaBuilder.In<Object> in = criteriaBuilder.in(path);
+                    for (String channel : channels){
+                        in.value(channel);
+                    }
+                    conditions.add(criteriaBuilder.and(in));
+                }
                 if(brands != null && brands.size() > 0){
                     Join<ItemEntity,PriceEntity> join = root.join("itemEntity",JoinType.LEFT);
                     Path<String> path = join.get("brand");
@@ -103,11 +112,21 @@ public class PriceService {
     }
 
     //不分页导出
-    public List<PriceEntity> exportItemPrice(List<String> brands, List<String> models, List<String> specs, Double priceLow, Double priceHigh, String dateStart, String dateEnd) {
+    public List<PriceEntity> exportItemPrice(List<String> channels,List<String> brands, List<String> models, List<String> specs, Double priceLow, Double priceHigh, String dateStart, String dateEnd) {
         List<PriceEntity> pageList = priceRepository.findAll(new Specification<PriceEntity>(){
             @Override
             public Predicate toPredicate(Root<PriceEntity> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
                 List<Predicate> conditions = new ArrayList<>();
+                if(channels != null && channels.size() > 0){
+                    Join<ItemEntity,PriceEntity> join = root.join("itemEntity",JoinType.LEFT);
+                    Path<String> path = join.get("channel");
+                    CriteriaBuilder.In<Object> in = criteriaBuilder.in(path);
+                    for (String channel : channels){
+                        in.value(channel);
+                    }
+                    conditions.add(criteriaBuilder.and(in));
+                }
+
                 if(brands != null && brands.size() > 0){
                     Join<ItemEntity,PriceEntity> join = root.join("itemEntity",JoinType.LEFT);
                     Path<String> path = join.get("brand");

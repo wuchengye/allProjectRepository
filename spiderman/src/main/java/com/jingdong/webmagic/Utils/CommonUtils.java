@@ -2,10 +2,7 @@ package com.jingdong.webmagic.Utils;
 
 import com.jingdong.webmagic.Constant.Constant;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,23 +24,36 @@ public class CommonUtils {
     }
 
     public static String regexBrand(String input) {
-        for (Map.Entry<String, String> entry : Constant.brandMap.entrySet()) {
-            Pattern patter = Pattern.compile(entry.getValue());
-            Matcher matcher = patter.matcher(input);
-            if (matcher.find()){
-                return entry.getKey();
+        if(input != null){
+            for (Map.Entry<String, String> entry : Constant.brandMap.entrySet()) {
+                Pattern patter = Pattern.compile(entry.getValue());
+                Matcher matcher = patter.matcher(input);
+                if (matcher.find()){
+                    return entry.getKey();
+                }
             }
         }
         return "";
     }
 
     public static String regexFormat(String input){
-        for (Map.Entry<String,String> entry : Constant.formatMap.entrySet()){
-            Pattern patter = Pattern.compile(entry.getValue());
-            Matcher matcher = patter.matcher(input);
-            if (matcher.find()){
-                return entry.getKey();
+        if(input != null){
+            for (Map.Entry<String,String> entry : Constant.formatMap.entrySet()){
+                Pattern patter = Pattern.compile(entry.getValue());
+                Matcher matcher = patter.matcher(input);
+                if (matcher.find()){
+                    return entry.getKey();
+                }
             }
+        }
+        return "";
+    }
+
+    public static String regexMoney(String money){
+        Pattern pattern = Pattern.compile("([1-9][0-9]*)+(.[0-9]{1,2})");
+        Matcher matcher = pattern.matcher(money);
+        if(matcher.find()){
+            return matcher.group();
         }
         return "";
     }
@@ -76,18 +86,46 @@ public class CommonUtils {
     //返回最低价格
     public static Double calcMinNum(Double price,List<Map<String,Double>> mapList){
         Double min = price;
-        if(price != null){
-            for(Map<String,Double> m : mapList){
-                if(m.get("man") != null && m.get("jian") != null){
-                    if(price >= m.get("man")){
-                        Double temp = price - m.get("jian");
-                        if(temp < min){
-                            min = temp;
-                        }
+        for(Map<String,Double> m : mapList){
+            if(m.get("jian") != null){
+                if(m.get("man") == null){
+                    m.put("man",0.0);
+                }
+                if(price >= m.get("man")){
+                    Double temp = price - m.get("jian");
+                    if(temp < min){
+                        min = temp;
                     }
                 }
             }
         }
         return min;
+    }
+
+    //判断官网详情页面
+    public static String brandOfUrl(String url){
+        if(url.contains("www.vmall.com")){
+            return "HUAWEI";
+        }
+        if(url.contains("www.mi.com")){
+            return "MI";
+        }
+        if(url.contains("shop.vivo.com.cn")){
+            return "VIVO";
+        }
+        if(url.contains("www.opposhop.cn")){
+            return "OPPO";
+        }
+        return "";
+    }
+
+    //随机数
+    public static Long getRandomNum(){
+        Long random;
+        Long time = new Date().getTime();
+        random = time * 1000;
+        Random r = new Random();
+        random = random + r.nextInt(1000);
+        return random;
     }
 }

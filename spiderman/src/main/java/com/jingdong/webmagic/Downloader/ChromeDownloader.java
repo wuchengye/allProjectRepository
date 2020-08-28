@@ -56,7 +56,7 @@ public class ChromeDownloader extends AbstractDownloader {
 
     }
 
-    public WebDriver getChromeDriver() throws IOException {
+    public static WebDriver getChromeDriver() throws IOException {
         if(service == null){
             //System.setProperty("webdriver.chrome.driver","C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe");
             //service = new ChromeDriverService.Builder().usingDriverExecutable(new File("D:\\All Downloads\\chromedriver.exe")).usingAnyFreePort().build();
