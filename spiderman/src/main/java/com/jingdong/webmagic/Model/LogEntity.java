@@ -19,6 +19,8 @@ public class LogEntity {
     @Column(name = "user_name")
     private String userName;
     private String method;
+    @Lob
+    @Column(columnDefinition="text")
     private String params;
     @CreatedDate
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")

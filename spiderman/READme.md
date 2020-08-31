@@ -1,1 +1,3 @@
 爬虫程序
+
+打包时需用lib下的webmagic-core替换掉本地maven仓库下对应的包

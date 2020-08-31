@@ -14,7 +14,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="JD" options="-parameters" />
-      <module name="jingdong" options="-parameters" />
+      <module name="jingdong" options="-parameters -extdirs src\main\lib" />
     </option>
   </component>
 </project>

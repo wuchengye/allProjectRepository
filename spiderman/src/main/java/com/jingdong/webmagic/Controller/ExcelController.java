@@ -1,7 +1,5 @@
 package com.jingdong.webmagic.Controller;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import com.jingdong.webmagic.Annotation.LogOperator;
 import com.jingdong.webmagic.Annotation.UserLoginToken;

@@ -31,7 +31,7 @@ public class ItemController {
     @UserLoginToken
     @LogOperator(method = "获取手机条目")
     @ResponseBody
-    public Result getInfo(@RequestParam(name = "_channel",required = false) List<String> _channels,
+    public Result getInfo(@RequestParam(name = "_channels",required = false) List<String> _channels,
                           @RequestParam(name = "_brands",required = false) List<String> _brands,
                           @RequestParam(name = "_models",required = false) List<String> _models,
                           @RequestParam(name = "_specs",required = false) List<String> _specs,
