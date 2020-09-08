@@ -97,7 +97,7 @@ public class JDStorePageProcessor implements PageProcessor {
         //P系列
         page.putField("P", page.getHtml().xpath("map [@id='Mapdhpxl']//area/@href").all());
         //Mate系列
-        page.putField("Mate", page.getHtml().xpath("map [@id='Mapdhmate']//area/@href").all());
+        page.putField("Mate", page.getHtml().xpath("map [@id='Mapzhp']//area/@href").all());
         //nova系列
         page.putField("nova", page.getHtml().xpath("map [@id='Mapdhnova']//area/@href").all());
         //麦芒/畅享系列

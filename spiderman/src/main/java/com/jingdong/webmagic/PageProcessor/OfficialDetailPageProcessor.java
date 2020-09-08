@@ -26,6 +26,9 @@ public class OfficialDetailPageProcessor implements PageProcessor {
 
     @Override
     public void process(Page page) {
+        //生命周期与这个方法不同，需要每次清空，不然数据重复会报错
+        itemEntityList.clear();
+        priceEntityList.clear();
         try {
             driver = ChromeDownloader.getChromeDriver();
             driver.manage().window().maximize();
