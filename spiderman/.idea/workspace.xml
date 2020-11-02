@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d5ecbfec-2679-4054-8d1b-fba679e5e01d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/PageProcessor/JDStorePageProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/PageProcessor/JDStorePageProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/PageProcessor/OfficialDetailPageProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/PageProcessor/OfficialDetailPageProcessor.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -62,6 +59,9 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.4275862" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RebelAgentSelection">
+    <selection>jr</selection>
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -195,6 +195,7 @@
       <workItem from="1598839251449" duration="61000" />
       <workItem from="1598839332756" duration="1349000" />
       <workItem from="1598840717242" duration="23379000" />
+      <workItem from="1604287113713" duration="1861000" />
     </task>
     <servers />
   </component>

@@ -28,19 +28,16 @@ public class JwtAespect {
     public void Jwt(){}
 
     @Around("Jwt()")
-    public Result JwtCheck(ProceedingJoinPoint point){
+    public Result JwtCheck(ProceedingJoinPoint point) throws Throwable {
         //判断是否是登录接口
         String methodName = point.getSignature().getName();
         if(LOGIN_METHOD_NAME.equals(methodName)){
-
+            return (Result) point.proceed();
         }else {
             ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
             HttpServletRequest request = requestAttributes.getRequest();
+            return Result.failure();
         }
-
-
-
-
     }
 
 
