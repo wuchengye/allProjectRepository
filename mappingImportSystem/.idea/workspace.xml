@@ -12,6 +12,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="AnnotationType" />
+        <option value="@Aspect" />
       </list>
     </option>
   </component>
@@ -96,7 +98,8 @@
       <option name="presentableId" value="Default" />
       <updated>1603939923198</updated>
       <workItem from="1603939926127" duration="6408000" />
-      <workItem from="1603956894358" duration="28805000" />
+      <workItem from="1603956894358" duration="31060000" />
+      <workItem from="1604369768611" duration="16232000" />
     </task>
     <servers />
   </component>

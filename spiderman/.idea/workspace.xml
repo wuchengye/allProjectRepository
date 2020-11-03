@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d5ecbfec-2679-4054-8d1b-fba679e5e01d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Utils/CodeUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jingdong/webmagic/Utils/CodeUtil.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -64,9 +65,10 @@
     <selection>jr</selection>
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Projects\GuangZhou\allProjectRepository\spiderman\src\main\java\com\jingdong\webmagic\Pipeline" />
-      <recent name="D:\Projects\GuangZhou\allProjectRepository\spiderman\src\main\java\com\jingdong\webmagic\PageProcessor" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Projects\GuangZhou\allProjectRepository\spiderman\src\main" />
+      <recent name="D:\Projects\GuangZhou\allProjectRepository\spiderman\src" />
+      <recent name="D:\Projects\GuangZhou\JD\src\main\resources\template" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.jingdong.webmagic.Service" />
@@ -74,10 +76,9 @@
       <recent name="com.jingdong.webmagic.Model" />
       <recent name="com.jingdong.webmagic.Downloader" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Projects\GuangZhou\allProjectRepository\spiderman\src\main" />
-      <recent name="D:\Projects\GuangZhou\allProjectRepository\spiderman\src" />
-      <recent name="D:\Projects\GuangZhou\JD\src\main\resources\template" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Projects\GuangZhou\allProjectRepository\spiderman\src\main\java\com\jingdong\webmagic\Pipeline" />
+      <recent name="D:\Projects\GuangZhou\allProjectRepository\spiderman\src\main\java\com\jingdong\webmagic\PageProcessor" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -196,6 +197,7 @@
       <workItem from="1598839332756" duration="1349000" />
       <workItem from="1598840717242" duration="23379000" />
       <workItem from="1604287113713" duration="1861000" />
+      <workItem from="1604371528668" duration="9693000" />
     </task>
     <servers />
   </component>

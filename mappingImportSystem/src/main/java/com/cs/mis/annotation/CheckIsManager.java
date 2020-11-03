@@ -8,8 +8,9 @@ import java.lang.annotation.Target;
 /**
  * @author wcy
  */
+
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface LogOperator {
-    String method() default "";
+public @interface CheckIsManager {
+    boolean required() default true;
 }

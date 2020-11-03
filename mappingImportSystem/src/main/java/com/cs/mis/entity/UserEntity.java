@@ -1,10 +1,16 @@
 package com.cs.mis.entity;
 
+
 /**
  * @author wcy
  */
 
 public class UserEntity {
+
+    public static final int USERSTATUS_VALID = 1;
+    public static final int USERSTATUS_INVALID = 0;
+    public static final int USERTYPE_MANAGER = 1;
+    public static final int USERTYPE_COMMON = 0;
 
     private Long userId;
     private String userAccount;

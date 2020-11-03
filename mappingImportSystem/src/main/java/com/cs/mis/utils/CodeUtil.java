@@ -1,4 +1,4 @@
-package com.jingdong.webmagic.Utils;
+package com.cs.mis.utils;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+/**
+ * @author wcy
+ */
 public class CodeUtil {
     /**
      * 宽度.
@@ -19,6 +22,7 @@ public class CodeUtil {
      * 个数.
      */
     private static int codeCount = 4;
+
     private static int xx = 15;
     private static int fontHeight = 18;
     private static  int codeY = 16;
