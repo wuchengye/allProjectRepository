@@ -1,5 +1,6 @@
 package com.cs.mis.controller;
 
+import com.auth0.jwt.JWT;
 import com.cs.mis.annotation.CheckIsManager;
 import com.cs.mis.annotation.PassToken;
 import com.cs.mis.annotation.RsaSecret;
@@ -15,8 +16,11 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import sun.misc.BASE64Encoder;
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -55,7 +59,7 @@ public class UserController {
 
     @PostMapping("/addUser")
     @CheckIsManager
-    @ApiOperation(value = "添加用户接口")
+    @ApiOperation(value = "添加用户接口" ,notes = "需管理员权限")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "userAccount", value = "账号", required = true),
             @ApiImplicitParam(name = "userName", value = "用户名", required = true)
@@ -77,21 +81,48 @@ public class UserController {
 
     @PostMapping("/resetPwd")
     @CheckIsManager
-    public Result resetPwd(){
-        return null;
+    @ApiOperation(value = "重置密码接口" , notes = "需管理员权限")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "userAccount", value = "账号", required = true)
+    })
+    public Result resetPwd(String userAccount){
+        int result = userService.updatePwdByAccount(userAccount,UserEntity.DEFAULT_PWD);
+        return result > 0 ? Result.success() : Result.failure();
     }
 
     @PostMapping("/changePwd")
-    @RsaSecret
-    @ApiOperation(value = "修改密码接口", notes = "传userPwd和userOldPwd字段")
+    //@RsaSecret
+    @ApiOperation(value = "修改密码接口", notes = "传userPwd和userOldPwd字段，需管理员权限")
     public Result changePwd(@RequestBody UserRequestBody userRequestBody){
-        return null;
+        //获取请求头中的token
+        ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = requestAttributes.getRequest();
+        String token = request.getHeader("token");
+        String userAccount = JWT.decode(token).getAudience().get(0);
+        UserEntity u = userService.getUserByAccount(userAccount);
+        if(u == null || !u.getUserPwd().equals(userRequestBody.getUserOldPwd())){
+            return Result.failure("密码修改失败：无效账号或密码错误");
+        }
+        int result = userService.updatePwdByAccount(userAccount,userRequestBody.getUserPwd());
+        return result > 0 ? Result.success() : Result.failure();
     }
 
     @PostMapping("/invalidUser")
     @CheckIsManager
-    public Result invalidUser(){
-        return null;
+    @ApiOperation(value = "恢复或舍弃用户接口", notes = "需管理员权限")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "userAccount", value = "账号", required = true),
+            @ApiImplicitParam(name = "isValid", value = "账号状态：有效为true", required = true, dataType = "boolean")
+    })
+    public Result invalidUser(String userAccount, boolean isValid){
+        UserEntity u = userService.getUserByAccount(userAccount);
+        Boolean flag = UserEntity.USERSTATUS_VALID == u.getUserStatus() ? true : false;
+        if(flag.equals(isValid)){
+            return Result.success();
+        }
+        int newStatus = isValid ? UserEntity.USERSTATUS_VALID : UserEntity.USERSTATUS_INVALID;
+        int result = userService.updateStatusByAccount(userAccount,newStatus);
+        return result > 0 ? Result.success() : Result.failure();
     }
 
     @GetMapping("/getCode")

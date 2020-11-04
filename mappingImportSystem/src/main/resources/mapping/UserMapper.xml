@@ -11,5 +11,12 @@
         values (#{userAccount},#{userName},#{userPwd},#{userType},#{userStatus})
     </insert>
 
+    <update id="updatePwdByAccount" >
+        update user set user_pwd = #{newPwd} where user_account = #{userAccount}
+    </update>
+
+    <update id="updateStatusByAccount">
+        update user set user_status = #{newStatus} where user_account = #{userAccount}
+    </update>
 
 </mapper>

@@ -25,4 +25,22 @@ public interface UserMapper {
      * @return 数据库受影响列数
      */
     int insertUser(UserEntity userEntity);
+
+    /**
+     * 通过account更新密码
+     * @date 2020-11-04 21:22
+     * @param userAccount 唯一账号
+     * @param newPwd 要更新的密码
+     * @return 数据库受影响列数
+     */
+    int updatePwdByAccount(String userAccount, String newPwd);
+
+    /**
+     * 通过account更新状态信息
+     * @date 2020-11-04 23:07
+     * @param userAccount 唯一账号
+     * @param newStatus 新的状态
+     * @return 数据库受影响列数
+     */
+    int updateStatusByAccount(String userAccount, int newStatus);
 }

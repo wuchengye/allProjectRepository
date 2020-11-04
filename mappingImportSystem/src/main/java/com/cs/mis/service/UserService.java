@@ -21,4 +21,12 @@ public class UserService {
     public int insertUser(UserEntity userEntity) {
         return userMapper.insertUser(userEntity);
     }
+
+    public int updatePwdByAccount(String userAccount, String newPwd) {
+        return userMapper.updatePwdByAccount(userAccount,newPwd);
+    }
+
+    public int updateStatusByAccount(String userAccount, int newStatus) {
+        return userMapper.updateStatusByAccount(userAccount,newStatus);
+    }
 }
