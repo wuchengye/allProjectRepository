@@ -17,4 +17,8 @@ public class UserService {
     public UserEntity getUserByAccount(String userAccount){
         return userMapper.getUserByAccount(userAccount);
     }
+
+    public int insertUser(UserEntity userEntity) {
+        return userMapper.insertUser(userEntity);
+    }
 }

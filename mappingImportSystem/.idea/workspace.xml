@@ -11,9 +11,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
-        <option value="AnnotationType" />
         <option value="@Aspect" />
+        <option value="AnnotationType" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -33,6 +33,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/cs/mis/annotation" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.4275862" />
@@ -99,7 +100,7 @@
       <updated>1603939923198</updated>
       <workItem from="1603939926127" duration="6408000" />
       <workItem from="1603956894358" duration="31060000" />
-      <workItem from="1604369768611" duration="16232000" />
+      <workItem from="1604369768611" duration="34665000" />
     </task>
     <servers />
   </component>

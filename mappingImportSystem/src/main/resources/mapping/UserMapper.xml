@@ -6,5 +6,10 @@
         select * from user where user_account = #{userAccount}
     </select>
 
+    <insert id="insertUser" parameterType="com.cs.mis.entity.UserEntity">
+        insert into user (user_account,user_name,user_pwd,user_type,user_status)
+        values (#{userAccount},#{userName},#{userPwd},#{userType},#{userStatus})
+    </insert>
+
 
 </mapper>

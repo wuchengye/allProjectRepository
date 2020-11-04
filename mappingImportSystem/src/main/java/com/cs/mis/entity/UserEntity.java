@@ -11,6 +11,7 @@ public class UserEntity {
     public static final int USERSTATUS_INVALID = 0;
     public static final int USERTYPE_MANAGER = 1;
     public static final int USERTYPE_COMMON = 0;
+    public static final String DEFAULT_PWD = "06127a02d497eecc6f17c3ec94b6c79d";
 
     private Long userId;
     private String userAccount;

@@ -18,5 +18,11 @@ public interface UserMapper {
      */
     UserEntity getUserByAccount(String userAccount);
 
-
+    /**
+     * 插入UserEntity对象.
+     * @date 2020-11-04 16:35
+     * @param userEntity 对象
+     * @return 数据库受影响列数
+     */
+    int insertUser(UserEntity userEntity);
 }
