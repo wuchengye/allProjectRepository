@@ -11,6 +11,7 @@ import com.cs.mis.service.UserService;
 import com.cs.mis.utils.CodeUtil;
 import com.cs.mis.utils.RedisUtil;
 import com.cs.mis.utils.RsaEncrypt;
+import io.netty.util.internal.StringUtil;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -40,13 +41,13 @@ public class UserController {
     private RedisUtil redisUtil;
 
     @PostMapping("/login")
-    //@RsaSecret
+    @RsaSecret
     @ApiOperation(value = "登录接口", notes = "userOldPwd字段不传；返回用户名、用户类型、token")
     public Result login(@RequestBody UserRequestBody userRequestBody){
-        /*String redisCodeValue = redisUtil.get(userRequestBody.getCodeKey());
+        String redisCodeValue = redisUtil.get(userRequestBody.getCodeKey());
         if(redisCodeValue == null || !redisCodeValue.toLowerCase().equals(userRequestBody.getCodeValue().toLowerCase())){
             return Result.failure("验证码错误");
-        }*/
+        }
         UserEntity userEntity = userService.getUserByAccount(userRequestBody.getUserAccount());
         if(userEntity == null || userEntity.getUserStatus() == UserEntity.USERSTATUS_INVALID){
             return Result.failure("用户不存在");
@@ -55,6 +56,21 @@ public class UserController {
             return Result.failure("密码错误");
         }
         return Result.success(userEntity);
+    }
+
+    @PostMapping("/getUsers")
+    @CheckIsManager
+    @ApiOperation(value = "获取用户列表接口", notes = "需管理员权限")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "userAccount", value = "账号", required = false, dataType = "string"),
+            @ApiImplicitParam(name = "pageNum", value = "开始页数", required = true, dataType = "Integer"),
+            @ApiImplicitParam(name = "pageSize", value = "页面大小", required = true, dataType = "Integer")
+    })
+    public Result getUsers(String userAccount, int pageNum, int pageSize){
+        String account = StringUtil.isNullOrEmpty(userAccount) ? null : userAccount;
+        return Result.success(
+                userService.getUsersByTypeAndAccount(UserEntity.USERTYPE_COMMON,account,pageNum,pageSize)
+        );
     }
 
     @PostMapping("/addUser")
@@ -91,8 +107,8 @@ public class UserController {
     }
 
     @PostMapping("/changePwd")
-    //@RsaSecret
-    @ApiOperation(value = "修改密码接口", notes = "传userPwd和userOldPwd字段，需管理员权限")
+    @RsaSecret
+    @ApiOperation(value = "修改密码接口", notes = "传userPwd和userOldPwd字段")
     public Result changePwd(@RequestBody UserRequestBody userRequestBody){
         //获取请求头中的token
         ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
@@ -153,7 +169,7 @@ public class UserController {
 
     @GetMapping("/getCipher")
     @PassToken
-    @ApiOperation(value = "获取密码加密随机公钥" , notes = "时效5分钟")
+    @ApiOperation(value = "获取密码加密随机公钥" , notes = "时效5分钟，有效次数1次")
     public Result getCipher(){
         try {
             Map map = RsaEncrypt.genKeyPair();

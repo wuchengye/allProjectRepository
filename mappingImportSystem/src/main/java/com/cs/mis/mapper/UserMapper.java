@@ -3,6 +3,8 @@ package com.cs.mis.mapper;
 import com.cs.mis.entity.UserEntity;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * @author wcy
  */
@@ -43,4 +45,13 @@ public interface UserMapper {
      * @return 数据库受影响列数
      */
     int updateStatusByAccount(String userAccount, int newStatus);
+
+    /**
+     * 通过type或再根据账号查找所有用户的账号的基本信息.可直接返回前端
+     * @date 2020-11-05 09:59
+     * @param userType 用户类型
+     * @param userAccount 账号
+     * @return 返回查找到的对象列表
+     */
+    List<UserEntity> getUsersByTypeAndAccount(int userType,String userAccount);
 }
