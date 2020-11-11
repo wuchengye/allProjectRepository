@@ -2,17 +2,16 @@ package com.cs.mis.service;
 
 import com.cs.mis.entity.ExcelDataEntity;
 import com.monitorjbl.xlsx.StreamingReader;
-import org.apache.poi.ss.usermodel.Cell;
+import io.netty.util.internal.StringUtil;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.stereotype.Service;
-
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.regex.Pattern;
 
 /**
  * @author wcy
@@ -34,19 +33,116 @@ public class ExcelService {
         int beginRow = 5;
         int rowPoint = 1;
 
-        boolean isError = false;
         StringBuffer errorMes = new StringBuffer();
+        //存储平台工号进行列校验
+        Set<String> hs = new HashSet<>();
 
         for (Row row : sheet){
-            if(rowPoint < 5){
+            if(rowPoint < beginRow){
                 rowPoint++;
                 continue;
             }
-            errorMes.append(checkData(row,rowPoint));
+            String[] arg = checkData(row,rowPoint);
+            errorMes.append(arg[0]);
+            if(!"".equals(arg[1])){
+                if(!hs.add(arg[1])){
+                    errorMes.append("第" + rowPoint + "行" + "第3列平台工号重复\n");
+                }
+            }
+            rowPoint++;
+        }
+        System.out.println("总" + rowPoint + "行");
+        if(!StringUtil.isNullOrEmpty(errorMes.toString())){
+            throw new Exception(errorMes.toString());
         }
     }
 
-    private String checkData(Row row, int rowPoint) {
-        row.getCell(0).getStringCellValue().trim()
+
+
+
+
+
+
+    /**
+     * @date 2020-11-11 15:42
+     * 行校验
+     */
+    private String[] checkData(Row row, int rowPoint) {
+        StringBuffer sb = new StringBuffer();
+        String platformNum = "";
+        Set<String> hs = new HashSet<>();
+
+        for(int x = 0; x < ExcelDataEntity.EXCEL_CELL_SIZE; x++){
+            //前8列必填
+            if(x < 8){
+                if(row.getCell(x) == null || "".equals(row.getCell(x).getStringCellValue())){
+                    sb.append("第" + rowPoint + "行" + "第" + (x+1) + "列为空\n");
+                    continue;
+                }
+            }
+            //11列后生产工号序列
+            if(x >= 11){
+                if(row.getCell(x) == null || "".equals(row.getCell(x).getStringCellValue())){
+                    continue;
+                }
+                if(!hs.add(row.getCell(x).getStringCellValue().trim())){
+                    sb.append("第" + rowPoint + "行" + "第" + (x+1) + "列生产工号重复\n");
+                }
+            }
+            switch (x){
+                case 0:
+                    if(!ExcelDataEntity.CENTER_ALL.contains(row.getCell(x).getStringCellValue().trim())){
+                        sb.append("第" + rowPoint + "行" + "第" + (x+1) + "列所属中心填写错误\n");
+                    }
+                    break;
+                case 1:
+                    if(!ExcelDataEntity.SUPPORT_ALL.contains(row.getCell(x).getStringCellValue().trim())){
+                        sb.append("第" + rowPoint + "行" + "第" + (x+1) + "列所属支撑方填写错误\n");
+                    }
+                    break;
+                case 2:
+                    if(!row.getCell(x).getStringCellValue().trim().startsWith("ZB") &&
+                            !row.getCell(x).getStringCellValue().trim().startsWith("08")){
+                        sb.append("第" + rowPoint + "行" + "第" + (x+1) + "列平台工号填写错误\n");
+                    }else {
+                        platformNum = row.getCell(x).getStringCellValue().trim();
+                    }
+                    break;
+                case 5:
+                    if(!ExcelDataEntity.POSITION_NAME_ALL.contains(row.getCell(x).getStringCellValue().trim())){
+                        sb.append("第" + rowPoint + "行" + "第" + (x+1) + "列岗位名称填写错误\n");
+                    }
+                    if("综援".equals(row.getCell(x).getStringCellValue().trim())){
+                        if(row.getCell(1) == null || !"自营".equals(row.getCell(1).getStringCellValue().trim())){
+                            sb.append("第" + rowPoint + "行" + "第" + (x+1) + "列岗位名称与所属支撑方冲突\n");
+                        }
+                    }
+                    break;
+                case 6:
+                    if(!ExcelDataEntity.MEMBER_TYPE_ALL.contains(row.getCell(x).getStringCellValue().trim())){
+                        sb.append("第" + rowPoint + "行" + "第" + (x+1) + "列人员类型填写错误\n");
+                    }
+                    break;
+                case 8:
+                    if(row.getCell(x) != null && !"".equals(row.getCell(x).getStringCellValue())){
+                        if(!Pattern.matches(ExcelDataEntity.EXCEL_DATE_PATTERN,row.getCell(x).getStringCellValue().trim())){
+                            sb.append("第" + rowPoint + "行" + "第" + (x+1) + "列抢包时间填写错误\n");
+                        }
+                    }
+                    break;
+                case 9:
+                    if(row.getCell(x) != null && !"".equals(row.getCell(x).getStringCellValue())){
+                        if(!Pattern.matches(ExcelDataEntity.EXCEL_DATE_PATTERN,row.getCell(x).getStringCellValue().trim())){
+                            sb.append("第" + rowPoint + "行" + "第" + (x+1) + "列离职时间填写错误\n");
+                        }
+                    }
+                    break;
+                default:
+            }
+        }
+        String[] arg = new String[2];
+        arg[0] = sb.toString();
+        arg[1] = platformNum;
+        return arg;
     }
 }

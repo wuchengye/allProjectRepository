@@ -1,5 +1,6 @@
 package com.cs.mis.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,6 +8,31 @@ import java.util.List;
  */
 
 public class ExcelDataEntity {
+
+    public static final int EXCEL_CELL_SIZE = 21;
+    public static final String EXCEL_DATE_PATTERN = "^(?:(?!0000)[0-9]{4}(?:(?:0[1-9]|1[0-2])(?:0[1-9]|1[0-9]|2[0-8])|(?:0[13-9]|1[0-2])(?:29|30)|(?:0[13578]|1[02])31)|(?:[0-9]{2}(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)0229)$";
+    public static final List<String> CENTER_ALL = new ArrayList<String>(){
+        {
+            add("省统众包");add("广州中心");add("深圳中心");add("东莞中心");add("佛山中心");add("汕头中心");add("江门中心");
+        }
+    };
+    public static final List<String> SUPPORT_ALL = new ArrayList<String>(){
+        {
+            add("广东科慧平台");add("广州点动平台");add("深圳润迅平台");add("鸿联九五平台");add("博岳平台");
+            add("泰盈平台");add("中通信息平台");add("北京众信佳平台");add("自营");
+        }
+    };
+    public static final List<String> POSITION_NAME_ALL = new ArrayList<String>(){
+        {
+            add("呼入客服代表");add("班长");add("培训师");add("综援");
+        }
+    };
+    public static final List<String> MEMBER_TYPE_ALL = new ArrayList<String>(){
+        {
+            add("新会员");add("成熟会员");add("自营");
+        }
+    };
+
     private String center;
     private String support;
     private String platformNum;

@@ -1,15 +1,12 @@
 package com.cs.mis.controller;
 
-import com.auth0.jwt.JWT;
 import com.cs.mis.annotation.PassToken;
 import com.cs.mis.restful.Result;
 import com.cs.mis.service.ExcelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
-import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
@@ -60,17 +57,18 @@ public class ExcelController {
             excelService.getExcelDataAndCheck(temp);
             return Result.success();
         }catch (Exception e){
-            e.printStackTrace();
             return Result.failure(e.getMessage());
         }
+        //读取excel中的数据，并转存txt和分批导入数据库
+
     }
 
     @GetMapping("/templateDownload")
     @PassToken
     public void templateDownload(HttpServletResponse response) throws IOException {
         //获取静态文件路径
-        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("template/人员工号映射导入模板.xlsx");
-        response.setHeader("content-disposition","attachment;filename=" + URLEncoder.encode("人员工号映射导入模板.xlsx","UTF-8"));
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("template/importTemplate.xlsx");
+        response.setHeader("content-disposition","attachment;filename=" + URLEncoder.encode("importTemplate.xlsx","UTF-8"));
         response.setContentType("content-type:octet-stream");
         OutputStream outputStream = response.getOutputStream();
         byte[] buffer = new byte[1024];
