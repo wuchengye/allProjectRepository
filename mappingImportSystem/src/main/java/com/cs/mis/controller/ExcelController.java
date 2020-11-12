@@ -55,12 +55,17 @@ public class ExcelController {
         //读取excel中的数据，并进行校验
         try {
             excelService.getExcelDataAndCheck(temp);
-            return Result.success();
         }catch (Exception e){
+            System.out.println(e.getMessage());
             return Result.failure(e.getMessage());
         }
         //读取excel中的数据，并转存txt和分批导入数据库
+        try {
+            excelService.saveExcelData(temp,isTodayData,userAccount);
+        }catch (Exception e){
 
+        }
+        return Result.success();
     }
 
     @GetMapping("/templateDownload")

@@ -3,10 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d5ecbfec-2679-4054-8d1b-fba679e5e01d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../mappingImportSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mappingImportSystem/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mappingImportSystem/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../mappingImportSystem/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../mappingImportSystem/src/main/java/com/cs/mis/controller/ExcelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../mappingImportSystem/src/main/java/com/cs/mis/controller/ExcelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mappingImportSystem/src/main/java/com/cs/mis/entity/ExcelDataEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../mappingImportSystem/src/main/java/com/cs/mis/entity/ExcelDataEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../mappingImportSystem/src/main/java/com/cs/mis/service/ExcelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../mappingImportSystem/src/main/java/com/cs/mis/service/ExcelService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mappingImportSystem/src/main/resources/template/人员工号映射导入模板.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/../mappingImportSystem/src/main/resources/template/importTemplate.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />

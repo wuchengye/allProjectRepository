@@ -1,11 +1,14 @@
 package com.cs.mis.service;
 
 import com.cs.mis.entity.ExcelDataEntity;
+import com.cs.mis.mapper.ExcelMapper;
+import com.cs.mis.utils.DateUtil;
 import com.monitorjbl.xlsx.StreamingReader;
 import io.netty.util.internal.StringUtil;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,6 +22,8 @@ import java.util.regex.Pattern;
 
 @Service
 public class ExcelService {
+    @Autowired
+    private ExcelMapper excelMapper;
 
     public void getExcelDataAndCheck(File temp) throws Exception{
         FileInputStream fileInputStream = new FileInputStream(temp);
@@ -56,6 +61,28 @@ public class ExcelService {
             throw new Exception(errorMes.toString());
         }
     }
+
+    public void saveExcelData(File temp, boolean isTodayData, String userAccount) throws Exception {
+        FileInputStream fileInputStream = new FileInputStream(temp);
+        Workbook wb = StreamingReader
+                .builder()
+                .rowCacheSize(100)
+                .bufferSize(4096)
+                .open(fileInputStream);
+        Sheet sheet = wb.getSheetAt(0);
+        if(isTodayData){
+            //获取今天日期
+            String today = DateUtil.getDateOfToday();
+            excelMapper.deleteByAccountAndDate(userAccount,today);
+            
+        }else {
+            //获取上月最后一天日期
+            String lastMonthDay = DateUtil.getDateOfLastMonth();
+
+
+        }
+    }
+
 
 
 
@@ -145,4 +172,5 @@ public class ExcelService {
         arg[1] = platformNum;
         return arg;
     }
+
 }

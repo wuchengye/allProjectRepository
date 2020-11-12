@@ -1,6 +1,8 @@
 package com.cs.mis.entity;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -44,7 +46,8 @@ public class ExcelDataEntity {
     private String beginTime;
     private String endTime;
     private String remark;
-    private List<String> jonNum;
+    private String jobNums;
+    private List<String> jobNumList;
 
     public String getCenter() {
         return center;
@@ -134,11 +137,15 @@ public class ExcelDataEntity {
         this.remark = remark;
     }
 
-    public List<String> getJonNum() {
-        return jonNum;
+    public List<String> getJobNumList() {
+        if(jobNumList == null){
+
+        }else {
+            return jobNumList;
+        }
     }
 
-    public void setJonNum(List<String> jonNum) {
-        this.jonNum = jonNum;
+    public void setJobNumList(List<String> jobNumList) {
+        this.jobNumList = jobNumList;
     }
 }
