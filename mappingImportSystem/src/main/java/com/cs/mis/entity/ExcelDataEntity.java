@@ -1,9 +1,7 @@
 package com.cs.mis.entity;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import io.netty.util.internal.StringUtil;
+import java.util.*;
 
 /**
  * @author wcy
@@ -139,13 +137,30 @@ public class ExcelDataEntity {
 
     public List<String> getJobNumList() {
         if(jobNumList == null){
-
+            if(StringUtil.isNullOrEmpty(jobNums)){
+                return null;
+            }else {
+                String[] arg = jobNums.split(",");
+                jobNumList = new ArrayList<>();
+                Collections.addAll(jobNumList,arg);
+                return jobNumList;
+            }
         }else {
             return jobNumList;
         }
     }
 
     public void setJobNumList(List<String> jobNumList) {
-        this.jobNumList = jobNumList;
+        this.jobNumList = null;
+        if(jobNumList == null || jobNumList.size() == 0){
+            jobNums = jobNumList == null ? null : "";
+        }else {
+            StringBuffer sb = new StringBuffer();
+            for (String num : jobNumList){
+                sb.append(num);
+                sb.append(",");
+            }
+            jobNums = sb.toString();
+        }
     }
 }

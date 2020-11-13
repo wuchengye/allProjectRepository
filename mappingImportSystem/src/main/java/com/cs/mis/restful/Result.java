@@ -65,6 +65,13 @@ public class Result<T> {
         return result;
     }
 
+    public static Result failure(String respCode,String respDesc){
+        Result result = new Result();
+        result.setRespCode(respCode);
+        result.setRespDesc(respDesc);
+        return result;
+    }
+
 
     @Override
     public String toString() {

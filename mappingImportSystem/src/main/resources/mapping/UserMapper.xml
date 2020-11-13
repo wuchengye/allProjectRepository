@@ -7,8 +7,8 @@
     </select>
 
     <insert id="insertUser" parameterType="com.cs.mis.entity.UserEntity">
-        insert into user (user_account,user_name,user_pwd,user_type,user_status)
-        values (#{userAccount},#{userName},#{userPwd},#{userType},#{userStatus})
+        insert into user (user_account,user_name,user_pwd,center,user_type,user_status)
+        values (#{userAccount},#{userName},#{userPwd},#{center},#{userType},#{userStatus})
     </insert>
 
     <update id="updatePwdByAccount" >
@@ -20,7 +20,7 @@
     </update>
     
     <select id="getUsersByTypeAndAccount" resultType="com.cs.mis.entity.UserEntity">
-        select user_account,user_name,user_status from user where user_type = #{userType}
+        select user_account,user_name,center,user_status from user where user_type = #{userType}
         <if test="userAccount != null">
             and user_account like concat('%',#{userAccount},'%')
         </if>

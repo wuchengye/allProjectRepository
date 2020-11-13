@@ -21,7 +21,11 @@ public class ExcelController {
 
     public static final String XLSX_REGEX = "^.+\\.(?i)(xlsx)$";
     //public static final String TEMP_PATH = "/home/mis/temp/";
-    public static final String TEMP_PATH = "d:\\home\\";
+    //public static final String TXT_DAT_PATH = "/home/mis/day/";
+    //public static final String TXT_MONTH_PATH = "/home/mis/month/";
+    public static final String TEMP_PATH = "d:\\home\\mis\\";
+    public static final String TXT_DAT_PATH = "d:\\home\\mis\\day\\";
+    public static final String TXT_MONTH_PATH = "d:\\home\\mis\\month\\";
 
     @Autowired
     private ExcelService excelService;

@@ -78,16 +78,21 @@ public class UserController {
     @ApiOperation(value = "添加用户接口" ,notes = "需管理员权限")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "userAccount", value = "账号", required = true),
-            @ApiImplicitParam(name = "userName", value = "用户名", required = true)
+            @ApiImplicitParam(name = "userName", value = "用户名", required = true),
+            @ApiImplicitParam(name = "center", value = "所属中心", required = true)
     })
-    public Result addUser(String userAccount,String userName){
+    public Result addUser(String userAccount,String userName,String center){
         UserEntity u = userService.getUserByAccount(userAccount);
         if(u != null){
             return Result.failure("账号已存在");
         }
+        if(!UserEntity.CENTER_ALL.contains(center)){
+            return Result.failure("所属中心错误");
+        }
         UserEntity userEntity = new UserEntity();
         userEntity.setUserAccount(userAccount);
         userEntity.setUserName(userName);
+        userEntity.setCenter(center);
         userEntity.setUserPwd(UserEntity.DEFAULT_PWD);
         userEntity.setUserType(UserEntity.USERTYPE_COMMON);
         userEntity.setUserStatus(UserEntity.USERSTATUS_VALID);
@@ -170,7 +175,7 @@ public class UserController {
     @GetMapping("/getCipher")
     @PassToken
     @ApiOperation(value = "获取密码加密随机公钥" , notes = "时效5分钟，有效次数1次")
-    public Result getCipher(){
+    public Result getCipher() {
         try {
             Map map = RsaEncrypt.genKeyPair();
             //生成私钥的随机key，存入缓存

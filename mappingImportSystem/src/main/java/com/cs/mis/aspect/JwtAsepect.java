@@ -69,28 +69,28 @@ public class JwtAsepect {
             HttpServletRequest request = requestAttributes.getRequest();
             String token = request.getHeader("token");
             if(token == null){
-                return Result.failure("无token");
+                return Result.failure("403","无token");
             }
             String userAccount;
             try {
                 userAccount = JWT.decode(token).getAudience().get(0);
             } catch (JWTDecodeException j) {
-                return Result.failure("无效token");
+                return Result.failure("403","无效token");
             }
             UserEntity userEntity = userService.getUserByAccount(userAccount);
             if(userEntity == null || userEntity.getUserStatus() == UserEntity.USERSTATUS_INVALID){
-                return Result.failure("用户不存在");
+                return Result.failure("403","用户不存在");
             }
             // 验证 token
             JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(userEntity.getUserPwd())).build();
             try {
                 jwtVerifier.verify(token);
             } catch (JWTVerificationException e) {
-                return Result.failure("无效token");
+                return Result.failure("403","无效token");
             }
             String redisToken = redisUtil.get(userAccount);
             if(redisToken == null || !redisToken.equals(token)){
-                return Result.failure("token过期请重新登录");
+                return Result.failure("403","token过期请重新登录");
             }
             redisUtil.expire(userAccount,1800L);
             return (Result) point.proceed();

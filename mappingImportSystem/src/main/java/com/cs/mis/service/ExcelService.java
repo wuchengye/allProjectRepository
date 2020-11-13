@@ -1,5 +1,6 @@
 package com.cs.mis.service;
 
+import com.cs.mis.controller.ExcelController;
 import com.cs.mis.entity.ExcelDataEntity;
 import com.cs.mis.mapper.ExcelMapper;
 import com.cs.mis.utils.DateUtil;
@@ -74,11 +75,15 @@ public class ExcelService {
             //获取今天日期
             String today = DateUtil.getDateOfToday();
             excelMapper.deleteByAccountAndDate(userAccount,today);
+            String parentPath = ExcelController.TXT_DAT_PATH + today + "\\";
+            getRowDataAndInsertWrite(userAccount,today,sheet);
             
         }else {
             //获取上月最后一天日期
             String lastMonthDay = DateUtil.getDateOfLastMonth();
-
+            excelMapper.deleteByAccountAndDate(userAccount,lastMonthDay);
+            String parentPath = ExcelController.TXT_MONTH_PATH + lastMonthDay.substring(0,7) + "\\";
+            getRowDataAndInsertWrite(userAccount,lastMonthDay,sheet);
 
         }
     }
