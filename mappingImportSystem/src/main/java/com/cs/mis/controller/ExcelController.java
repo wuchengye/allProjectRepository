@@ -1,12 +1,18 @@
 package com.cs.mis.controller;
 
+import com.auth0.jwt.JWT;
 import com.cs.mis.annotation.PassToken;
 import com.cs.mis.restful.Result;
 import com.cs.mis.service.ExcelService;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
@@ -31,18 +37,17 @@ public class ExcelController {
     private ExcelService excelService;
 
     @PostMapping("/importExcel")
-    @PassToken
+    @ApiOperation(value = "导入接口")
+    @ApiImplicitParam(name = "isTodayData", value = "当天数据：false为重跑前月数据", required = true, dataType = "boolean")
     public Result importExcel(@RequestBody MultipartFile file,boolean isTodayData){
         if(!file.getOriginalFilename().matches(XLSX_REGEX)){
             return Result.failure();
         }
         //获取token中的account
-        /*ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = requestAttributes.getRequest();
         String token = request.getHeader("token");
-        String userAccount = JWT.decode(token).getAudience().get(0);*/
-
-        String userAccount = "test";
+        String userAccount = JWT.decode(token).getAudience().get(0);
 
         //存入临时文件夹
         if(!new File(TEMP_PATH).exists()){
@@ -67,12 +72,13 @@ public class ExcelController {
         try {
             excelService.saveExcelData(temp,isTodayData,userAccount);
         }catch (Exception e){
-
+            return Result.failure(e.getMessage());
         }
         return Result.success();
     }
 
     @GetMapping("/templateDownload")
+    @ApiOperation(value = "导入模板下载接口")
     @PassToken
     public void templateDownload(HttpServletResponse response) throws IOException {
         //获取静态文件路径

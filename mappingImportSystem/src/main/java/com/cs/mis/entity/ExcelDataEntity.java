@@ -160,7 +160,14 @@ public class ExcelDataEntity {
                 sb.append(num);
                 sb.append(",");
             }
-            jobNums = sb.toString();
+            jobNums = sb.toString().substring(0,sb.toString().length()-1);
         }
+    }
+
+    @Override
+    public String toString() {
+        String A = "&&";
+        return center + A + support + A + platformNum + A + name + A + group + A + positionName + A + memberType + A +
+                standardPositionName + A + beginTime + A + endTime + A + remark + A + jobNums.replace(",",A);
     }
 }

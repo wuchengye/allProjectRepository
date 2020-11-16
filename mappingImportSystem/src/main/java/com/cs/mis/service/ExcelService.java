@@ -3,6 +3,7 @@ package com.cs.mis.service;
 import com.cs.mis.controller.ExcelController;
 import com.cs.mis.entity.ExcelDataEntity;
 import com.cs.mis.mapper.ExcelMapper;
+import com.cs.mis.mapper.UserMapper;
 import com.cs.mis.utils.DateUtil;
 import com.monitorjbl.xlsx.StreamingReader;
 import io.netty.util.internal.StringUtil;
@@ -13,8 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.HashSet;
-import java.util.Set;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
 import java.util.regex.Pattern;
 
 /**
@@ -25,6 +27,8 @@ import java.util.regex.Pattern;
 public class ExcelService {
     @Autowired
     private ExcelMapper excelMapper;
+    @Autowired
+    private UserMapper userMapper;
 
     public void getExcelDataAndCheck(File temp) throws Exception{
         FileInputStream fileInputStream = new FileInputStream(temp);
@@ -76,24 +80,148 @@ public class ExcelService {
             String today = DateUtil.getDateOfToday();
             excelMapper.deleteByAccountAndDate(userAccount,today);
             String parentPath = ExcelController.TXT_DAT_PATH + today + "\\";
-            getRowDataAndInsertWrite(userAccount,today,sheet);
-            
+            String center = userMapper.getCenterByAccount(userAccount);
+            String fileName = "staffinformation_" + center + "_day_" + today.replace("-","") + ".txt";
+            getRowDataAndInsertWrite(userAccount,today,sheet,parentPath,fileName);
         }else {
             //获取上月最后一天日期
             String lastMonthDay = DateUtil.getDateOfLastMonth();
             excelMapper.deleteByAccountAndDate(userAccount,lastMonthDay);
             String parentPath = ExcelController.TXT_MONTH_PATH + lastMonthDay.substring(0,7) + "\\";
-            getRowDataAndInsertWrite(userAccount,lastMonthDay,sheet);
-
+            String center = userMapper.getCenterByAccount(userAccount);
+            String fileName = "staffinformation_" + center + "_month_" + lastMonthDay.substring(0,7).replace("-","") + ".txt";
+            getRowDataAndInsertWrite(userAccount,lastMonthDay,sheet,parentPath,fileName);
         }
     }
 
+    private void getRowDataAndInsertWrite(String userAccount, String date, Sheet sheet, String parentPath,String fileName) throws Exception {
+        //创建文件夹,对天和月的进行分类
+        File folder = new File(parentPath);
+        folder.mkdirs();
+        //写入流
+        FileWriter fw = new FileWriter(parentPath + fileName);
+        //暂存list
+        List<ExcelDataEntity> entityList = new ArrayList<>();
+        //从第5行开始解析
+        int beginRow = 5;
+        int rowPoint = 1;
+        int resultLine = 0;
 
+        for (Row row : sheet){
+            if(rowPoint < beginRow){
+                rowPoint++;
+                continue;
+            }
+            entityList.add(readRow(row));
+            resultLine++;
+            //分批100行进行存储
+            if(resultLine == 100){
+                try {
+                    saveTxtAndSql(entityList,userAccount,date,fw);
+                } catch (Exception e) {
+                    fw.close();
+                    throw e;
+                }
+                resultLine = 0;
+                entityList.clear();
+            }
+        }
+        if(entityList.size() > 0){
+            try {
+                saveTxtAndSql(entityList,userAccount,date,fw);
+            } catch (Exception e) {
+                fw.close();
+                throw e;
+            }
+        }
+        fw.close();
+    }
 
+    /**
+     * @date 2020-11-16 15:06
+     * 行读取，返回对象
+     */
+    private ExcelDataEntity readRow(Row row) {
+        ExcelDataEntity entity = new ExcelDataEntity();
+        List<String> list = new ArrayList<>(10);
+        for (int x = 0; x < ExcelDataEntity.EXCEL_CELL_SIZE; x++){
+            switch (x){
+                case 0:
+                    entity.setCenter(row.getCell(x).getStringCellValue());
+                    break;
+                case 1:
+                    entity.setSupport(row.getCell(x).getStringCellValue());
+                    break;
+                case 2:
+                    entity.setPlatformNum(row.getCell(x).getStringCellValue());
+                    break;
+                case 3:
+                    entity.setName(row.getCell(x).getStringCellValue());
+                    break;
+                case 4:
+                    entity.setGroup(row.getCell(x).getStringCellValue());
+                    break;
+                case 5:
+                    entity.setPositionName(row.getCell(x).getStringCellValue());
+                    break;
+                case 6:
+                    entity.setMemberType(row.getCell(x).getStringCellValue());
+                    break;
+                case 7:
+                    entity.setStandardPositionName(row.getCell(x).getStringCellValue());
+                    break;
+                case 8:
+                    if(row.getCell(x) == null || "".equals(row.getCell(x).getStringCellValue())){
+                        entity.setBeginTime(null);
+                        break;
+                    }
+                    entity.setBeginTime(row.getCell(x).getStringCellValue());
+                    break;
+                case 9:
+                    if(row.getCell(x) == null || "".equals(row.getCell(x).getStringCellValue())){
+                        entity.setEndTime(null);
+                        break;
+                    }
+                    entity.setEndTime(row.getCell(x).getStringCellValue());
+                    break;
+                case 10:
+                    if(row.getCell(x) == null || "".equals(row.getCell(x).getStringCellValue())){
+                        entity.setRemark(null);
+                        break;
+                    }
+                    entity.setRemark(row.getCell(x).getStringCellValue());
+                    break;
+                default:
+                    if(row.getCell(x) == null || "".equals(row.getCell(x).getStringCellValue())){
+                        list.add(null);
+                    }else {
+                        list.add(row.getCell(x).getStringCellValue());
+                    }
+            }
+        }
+        entity.setJobNumList(list);
+        return entity;
+    }
 
-
-
-
+    /**
+     * @date 2020-11-16 15:06
+     * 写入数据库和文件
+     */
+    private void saveTxtAndSql(List<ExcelDataEntity> entityList, String userAccount, String date, FileWriter fw) throws Exception {
+        int id = userMapper.getIdByAccount(userAccount);
+        Map<String,Object> map = new HashMap<>(3);
+        map.put("id",id);
+        map.put("date",date);
+        map.put("entityList",entityList);
+        int success = excelMapper.insertListWithDateAndId(map);
+        if(success != entityList.size()){
+            throw new Exception("插入数据库缺失");
+        }
+        for (ExcelDataEntity entity : entityList){
+            fw.write(entity.toString() + "\n");
+        }
+        fw.flush();
+    }
 
     /**
      * @date 2020-11-11 15:42

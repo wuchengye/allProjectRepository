@@ -113,7 +113,7 @@ public class UserController {
 
     @PostMapping("/changePwd")
     @RsaSecret
-    @ApiOperation(value = "修改密码接口", notes = "传userPwd和userOldPwd字段")
+    @ApiOperation(value = "修改密码接口", notes = "传rsaKey、userPwd和userOldPwd字段")
     public Result changePwd(@RequestBody UserRequestBody userRequestBody){
         //获取请求头中的token
         ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();

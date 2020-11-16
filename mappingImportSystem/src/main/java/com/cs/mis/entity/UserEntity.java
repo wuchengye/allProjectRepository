@@ -17,7 +17,7 @@ public class UserEntity {
     public static final String DEFAULT_PWD = "06127a02d497eecc6f17c3ec94b6c79d";
     public static final List<String> CENTER_ALL = new ArrayList<String>(){
         {
-            add("省统众包");add("广州中心");add("深圳中心");add("东莞中心");add("佛山中心");add("汕头中心");add("江门中心");
+            add("zb");add("gz");add("sz");add("dg");add("fs");add("st");add("jm");
         }
     };
 

@@ -4,6 +4,29 @@
     <delete id="deleteByAccountAndDate">
         delete from import_data where user_id=(select user_id from user where user_account=#{userAccount}) and import_time=#{date}
     </delete>
+    
+    <insert id="insertListWithDateAndId" parameterType="java.util.Map">
+        insert into import_data
+        (user_id,import_time,center,support,platform_num,`name`,`group`,position_name,member_type,
+        standard_position_name,begin_time,end_time,remark,job_nums)
+        values
+        <foreach collection="map.entityList" index="index" item="item" separator=",">
+            (#{map.id},
+            #{map.date},
+            #{item.center},
+            #{item.support},
+            #{item.platformNum},
+            #{item.name},
+            #{item.group},
+            #{item.positionName},
+            #{item.memberType},
+            #{item.standardPositionName},
+            #{item.beginTime},
+            #{item.endTime},
+            #{item.remark},
+            #{item.jobNums})
+        </foreach>
+    </insert>
 
 
 </mapper>

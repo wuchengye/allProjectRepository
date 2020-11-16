@@ -54,4 +54,20 @@ public interface UserMapper {
      * @return 返回查找到的对象列表
      */
     List<UserEntity> getUsersByTypeAndAccount(int userType,String userAccount);
+
+    /**
+     * 通过Account查找用户所属中心
+     * @date 2020-11-16 09:50
+     * @param userAccount 账号
+     * @return 所属中心
+     */
+    String getCenterByAccount(String userAccount);
+
+    /**
+     * 通过Account查找用户id
+     * @date 2020-11-16 14:23
+     * @param userAccount 账号
+     * @return id
+     */
+    int getIdByAccount(String userAccount);
 }
