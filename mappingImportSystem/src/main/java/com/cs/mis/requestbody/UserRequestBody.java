@@ -1,4 +1,4 @@
-package com.cs.mis.restful;
+package com.cs.mis.requestbody;
 
 import io.swagger.annotations.ApiModel;
 

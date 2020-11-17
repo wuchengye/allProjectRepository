@@ -33,6 +33,7 @@ public class ExcelDataEntity {
         }
     };
 
+    private String importTime;
     private String center;
     private String support;
     private String platformNum;
@@ -46,6 +47,14 @@ public class ExcelDataEntity {
     private String remark;
     private String jobNums;
     private List<String> jobNumList;
+
+    public String getImportTime() {
+        return importTime;
+    }
+
+    public void setImportTime(String importTime) {
+        this.importTime = importTime;
+    }
 
     public String getCenter() {
         return center;

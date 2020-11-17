@@ -1,7 +1,7 @@
 package com.cs.mis.aspect;
 
 import com.cs.mis.restful.Result;
-import com.cs.mis.restful.UserRequestBody;
+import com.cs.mis.requestbody.UserRequestBody;
 import com.cs.mis.utils.RedisUtil;
 import com.cs.mis.utils.RsaEncrypt;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -11,8 +11,6 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-
-import java.awt.geom.RectangularShape;
 
 /**
  * @author wcy

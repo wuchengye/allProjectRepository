@@ -6,7 +6,7 @@ import com.cs.mis.annotation.PassToken;
 import com.cs.mis.annotation.RsaSecret;
 import com.cs.mis.entity.UserEntity;
 import com.cs.mis.restful.Result;
-import com.cs.mis.restful.UserRequestBody;
+import com.cs.mis.requestbody.UserRequestBody;
 import com.cs.mis.service.UserService;
 import com.cs.mis.utils.CodeUtil;
 import com.cs.mis.utils.RedisUtil;

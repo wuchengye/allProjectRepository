@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cs.mis.mapper.SelectMapper">
+
+    <select id="getData" parameterType="com.cs.mis.requestbody.SelectConditionBody" resultType="com.cs.mis.entity.ExcelDataEntity">
+        select import_time,center,support,platform_num,`name`,`group`,position_name,
+                member_type,standard_position_name,begin_time,end_time,remark,job_nums
+                from import_data where 1 = 1
+                <if test="date != null and date != ''">
+                    and import_time = #{date}
+                </if>
+                <if test="center != null and center != ''">
+                    and center = #{center}
+                </if>
+                <if test="support != null and support != ''">
+                    and support = #{support}
+                </if>
+                <if test="platformNum != null and platformNum != ''">
+                    and platform_num = #{platformNum}
+                </if>
+                <if test="name != null and name != ''">
+                    and `name` = #{name}
+                </if>
+                <if test="jobNum != null and jobNum != ''">
+                    and FIND_IN_SET(#{jobNum},job_nums)
+                </if>
+                order by import_time desc,center,support
+    </select>
+
+</mapper>

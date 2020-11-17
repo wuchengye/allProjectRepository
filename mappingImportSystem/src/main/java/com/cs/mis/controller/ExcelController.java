@@ -4,6 +4,7 @@ import com.auth0.jwt.JWT;
 import com.cs.mis.annotation.PassToken;
 import com.cs.mis.restful.Result;
 import com.cs.mis.service.ExcelService;
+import com.cs.mis.service.SelectService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,8 @@ public class ExcelController {
 
     @Autowired
     private ExcelService excelService;
+    @Autowired
+    private SelectService selectService;
 
     @PostMapping("/importExcel")
     @ApiOperation(value = "导入接口")
@@ -65,13 +68,14 @@ public class ExcelController {
         try {
             excelService.getExcelDataAndCheck(temp);
         }catch (Exception e){
-            System.out.println(e.getMessage());
+            e.printStackTrace();
             return Result.failure(e.getMessage());
         }
         //读取excel中的数据，并转存txt和分批导入数据库
         try {
             excelService.saveExcelData(temp,isTodayData,userAccount);
         }catch (Exception e){
+            e.printStackTrace();
             return Result.failure(e.getMessage());
         }
         return Result.success();
