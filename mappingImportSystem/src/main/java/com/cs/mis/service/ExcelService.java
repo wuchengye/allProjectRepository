@@ -10,12 +10,12 @@ import io.netty.util.internal.StringUtil;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.streaming.SXSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
+
+import java.io.*;
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -306,4 +306,88 @@ public class ExcelService {
         return arg;
     }
 
+    /**
+     * 将数据写入导出模板
+     * @date 2020-11-18 15:43
+     * @return
+     */
+    public File insertExcel(InputStream inputStream, List<ExcelDataEntity> list,String tempPath) {
+        SXSSFWorkbook sxssf = null;
+        File exportTempFile = null;
+        try {
+            XSSFWorkbook xssf = new XSSFWorkbook(inputStream);
+            sxssf = new SXSSFWorkbook(xssf);
+            Sheet sheet = sxssf.getSheetAt(0);
+            int rowPoiot = 2;
+            for (ExcelDataEntity entity : list){
+                Row row = sheet.createRow(rowPoiot);
+                for (int x = 0; x < ExcelDataEntity.EXCEL_CELL_SIZE; x++){
+                    switch (x){
+                        case 0:
+                            row.createCell(x).setCellValue(entity.getCenter());
+                            break;
+                        case 1:
+                            row.createCell(x).setCellValue(entity.getSupport());
+                            break;
+                        case 2:
+                            row.createCell(x).setCellValue(entity.getPlatformNum());
+                            break;
+                        case 3:
+                            row.createCell(x).setCellValue(entity.getName());
+                            break;
+                        case 4:
+                            row.createCell(x).setCellValue(entity.getGroup());
+                            break;
+                        case 5:
+                            row.createCell(x).setCellValue(entity.getPositionName());
+                            break;
+                        case 6:
+                            row.createCell(x).setCellValue(entity.getMemberType());
+                            break;
+                        case 7:
+                            row.createCell(x).setCellValue(entity.getStandardPositionName());
+                            break;
+                        case 8:
+                            if(entity.getBeginTime() != null){
+                                row.createCell(x).setCellValue(entity.getBeginTime());
+                            }
+                            break;
+                        case 9:
+                            if(entity.getEndTime() != null){
+                                row.createCell(x).setCellValue(entity.getEndTime());
+                            }
+                            break;
+                        case 10:
+                            if(entity.getRemark() != null){
+                                row.createCell(x).setCellValue(entity.getRemark());
+                            }
+                            break;
+                        default:
+                            String num = entity.getJobNumList().get(x - 11);
+                            if(num != null && !"".equals(num) && !"null".equals(num)){
+                                row.createCell(x).setCellValue(num);
+                            }
+                    }
+                }
+                rowPoiot++;
+            }
+            if(!new File(tempPath).exists()){
+                new File(tempPath).mkdirs();
+            }
+            exportTempFile = new File(tempPath + "export_" + System.currentTimeMillis() + ".xlsx");
+            FileOutputStream out = new FileOutputStream(exportTempFile);
+            sxssf.write(out);
+            out.close();
+        }catch (Exception e){
+            if(exportTempFile != null && exportTempFile.exists()){
+                exportTempFile.delete();
+            }
+            e.printStackTrace();
+        }finally {
+            if (sxssf != null){
+                sxssf.dispose();
+            }
+        }
+        return exportTempFile.exists() ? exportTempFile : null;
+    }
 }

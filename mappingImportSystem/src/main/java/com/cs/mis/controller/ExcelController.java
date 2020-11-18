@@ -2,11 +2,16 @@ package com.cs.mis.controller;
 
 import com.auth0.jwt.JWT;
 import com.cs.mis.annotation.PassToken;
+import com.cs.mis.entity.ExcelDataEntity;
+import com.cs.mis.requestbody.SelectConditionBody;
 import com.cs.mis.restful.Result;
 import com.cs.mis.service.ExcelService;
 import com.cs.mis.service.SelectService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.xssf.streaming.SXSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -17,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
+import java.util.List;
 
 /**
  * @author wcy
@@ -30,7 +36,7 @@ public class ExcelController {
     //public static final String TEMP_PATH = "/home/mis/temp/";
     //public static final String TXT_DAT_PATH = "/home/mis/day/";
     //public static final String TXT_MONTH_PATH = "/home/mis/month/";
-    public static final String TEMP_PATH = "d:\\home\\mis\\";
+    public static final String TEMP_PATH = "d:\\home\\mis\\temp\\";
     public static final String TXT_DAT_PATH = "d:\\home\\mis\\day\\";
     public static final String TXT_MONTH_PATH = "d:\\home\\mis\\month\\";
 
@@ -68,6 +74,7 @@ public class ExcelController {
         try {
             excelService.getExcelDataAndCheck(temp);
         }catch (Exception e){
+            temp.delete();
             e.printStackTrace();
             return Result.failure(e.getMessage());
         }
@@ -75,15 +82,43 @@ public class ExcelController {
         try {
             excelService.saveExcelData(temp,isTodayData,userAccount);
         }catch (Exception e){
+            temp.delete();
             e.printStackTrace();
             return Result.failure(e.getMessage());
         }
+        temp.delete();
         return Result.success();
+    }
+
+    @PostMapping("/exportExcel")
+    @ApiOperation(value = "导出接口")
+    public void exportExcel(HttpServletResponse response,@RequestBody SelectConditionBody selectConditionBody) {
+        List<ExcelDataEntity> list = selectService.getDataWithoutPage(selectConditionBody);
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("template/exportTemplate.xlsx");
+        File export = excelService.insertExcel(inputStream,list,TEMP_PATH);
+        if(export != null){
+            try {
+                response.setHeader("content-disposition","attachment;filename=" + URLEncoder.encode("export.xlsx","UTF-8"));
+                response.setContentType("content-type:octet-stream");
+                OutputStream outputStream = response.getOutputStream();
+                InputStream in = new FileInputStream(export);
+                byte[] buffer = new byte[1024];
+                int len;
+                while ((len = in.read(buffer)) != -1){
+                    outputStream.write(buffer ,0 , len);
+                }
+                in.close();
+                outputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }finally {
+                export.delete();
+            }
+        }
     }
 
     @GetMapping("/templateDownload")
     @ApiOperation(value = "导入模板下载接口")
-    @PassToken
     public void templateDownload(HttpServletResponse response) throws IOException {
         //获取静态文件路径
         InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("template/importTemplate.xlsx");

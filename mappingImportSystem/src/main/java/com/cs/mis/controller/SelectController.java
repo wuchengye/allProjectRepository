@@ -21,7 +21,6 @@ public class SelectController {
     private SelectService selectService;
 
     @PostMapping("/getData")
-    @PassToken
     @ApiOperation(value = "查询接口")
     public Result getData(@RequestBody SelectConditionBody selectConditionBody){
         return Result.success(selectService.getData(selectConditionBody));

@@ -25,4 +25,9 @@ public class SelectService {
         PageInfo pageInfo = new PageInfo(list);
         return pageInfo;
     }
+
+    public List getDataWithoutPage(SelectConditionBody selectConditionBody){
+        List<ExcelDataEntity> list = selectMapper.getData(selectConditionBody);
+        return list;
+    }
 }
