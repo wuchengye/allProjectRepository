@@ -3,6 +3,7 @@ package com.cs.mis.utils;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * @author wcy
@@ -17,6 +18,18 @@ public class DateUtil {
         SimpleDateFormat sf=new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date(System.currentTimeMillis());
         return sf.format(date);
+    }
+
+    /**
+     * @date 2020-11-20 15:02
+     * 获取昨天日期
+     */
+    public static String getDateOfYesterday(){
+        SimpleDateFormat sf=new SimpleDateFormat("yyyy-MM-dd");
+        Calendar cal=Calendar.getInstance();
+        cal.add(Calendar.DATE,-1);
+        Date d=cal.getTime();
+        return sf.format(d);
     }
 
     /**

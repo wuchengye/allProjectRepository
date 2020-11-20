@@ -23,7 +23,7 @@ public interface ExcelMapper {
     void deleteByAccountAndDate(String userAccount, String date);
 
     /**
-     * 插入list的excel数据，和date日期以及id用户账号的map
+     * 插入list的excel数据，和date导入日期以及id用户账号的map
      * @date 2020-11-16 14:26
      * @param map 以上数据集合
      * @return 成功条数

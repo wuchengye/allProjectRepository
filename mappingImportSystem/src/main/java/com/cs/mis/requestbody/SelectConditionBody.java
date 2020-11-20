@@ -13,8 +13,6 @@ public class SelectConditionBody {
     private String platformNum;
     private String date = DateUtil.getDateOfToday();
     private String name;
-    private int pageNum = 1;
-    private int pageSize = 10;
 
     public String getCenter() {
         return center;
@@ -62,22 +60,6 @@ public class SelectConditionBody {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getPageNum() {
-        return pageNum;
-    }
-
-    public void setPageNum(int pageNum) {
-        this.pageNum = pageNum;
-    }
-
-    public int getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
     }
 
 }

@@ -19,8 +19,8 @@ public class SelectService {
     @Autowired
     private SelectMapper selectMapper;
 
-    public PageInfo getData(SelectConditionBody selectConditionBody) {
-        PageHelper.startPage(selectConditionBody.getPageNum(),selectConditionBody.getPageSize());
+    public PageInfo getData(SelectConditionBody selectConditionBody,int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
         List<ExcelDataEntity> list = selectMapper.getData(selectConditionBody);
         PageInfo pageInfo = new PageInfo(list);
         return pageInfo;

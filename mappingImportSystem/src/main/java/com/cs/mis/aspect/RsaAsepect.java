@@ -51,10 +51,13 @@ public class RsaAsepect {
                 return Result.failure("旧密码解密错误");
             }
         }
-        redisUtil.del(userRequestBody.getRsaKey());
         userRequestBody.setUserPwd(userPwd);
         userRequestBody.setUserOldPwd(userOldPwd);
         objects[0] = userRequestBody;
-        return (Result) point.proceed(objects);
+        Result result = (Result) point.proceed(objects);
+        if(result.getRespCode().equals(Result.SUCCESS_RESPCODE)){
+            redisUtil.del(userRequestBody.getRsaKey());
+        }
+        return result;
     }
 }

@@ -13,13 +13,13 @@
                     and center = #{center}
                 </if>
                 <if test="support != null and support != ''">
-                    and support = #{support}
+                    and support like concat('%',#{support,jdbcType=VARCHAR},'%')
                 </if>
                 <if test="platformNum != null and platformNum != ''">
-                    and platform_num = #{platformNum}
+                    and platform_num like concat('%',#{platformNum,jdbcType=VARCHAR},'%')
                 </if>
                 <if test="name != null and name != ''">
-                    and `name` = #{name}
+                    and `name` like concat('%',#{name,jdbcType=VARCHAR},'%')
                 </if>
                 <if test="jobNum != null and jobNum != ''">
                     and FIND_IN_SET(#{jobNum},job_nums)
