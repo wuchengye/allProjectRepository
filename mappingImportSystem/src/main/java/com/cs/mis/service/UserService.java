@@ -4,10 +4,12 @@ import com.cs.mis.entity.UserEntity;
 import com.cs.mis.mapper.UserMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import javafx.beans.binding.ObjectExpression;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author wcy
@@ -39,5 +41,10 @@ public class UserService {
         List<UserEntity> list = userMapper.getUsersByTypeAndAccount(userType,userAccount);
         PageInfo pageInfo = new PageInfo(list);
         return pageInfo;
+    }
+
+    public List<Map<String,String>> getUserIdAndCenterByType(int userType){
+        List<Map<String, String>> mapList = userMapper.getUserIdAndCenterByType(userType);
+        return mapList;
     }
 }

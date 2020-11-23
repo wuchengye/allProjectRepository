@@ -4,6 +4,7 @@ import com.cs.mis.entity.UserEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author wcy
@@ -70,4 +71,12 @@ public interface UserMapper {
      * @return id
      */
     int getIdByAccount(String userAccount);
+
+    /**
+     * 根据类型查找用户id和center
+     * @date 2020-11-23 11:35
+     * @param userType 用户类型
+     * @return map key---id 、center
+     */
+    List<Map<String,String>> getUserIdAndCenterByType(int userType);
 }
