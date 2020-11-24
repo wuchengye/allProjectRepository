@@ -27,4 +27,31 @@
                 order by import_time desc,center,support
     </select>
 
+    <select id="getOneDataByDateAndId" resultType="com.cs.mis.entity.ExcelDataEntity">
+        select import_time,center,support,platform_num,`name`,`group`,position_name,
+                member_type,standard_position_name,begin_time,end_time,remark,job_nums
+                from import_data where import_time = #{date} and user_id in
+                <foreach collection="ids" item="id" index="index" open="(" close=")" separator=",">
+                    #{id}
+                </foreach>
+                limit 1
+    </select>
+
+    <select id="getOneDataBeforeDateByIdDesc" resultType="com.cs.mis.entity.ExcelDataEntity">
+        select import_time,center,support,platform_num,`name`,`group`,position_name,
+                member_type,standard_position_name,begin_time,end_time,remark,job_nums
+                from import_data where import_time &lt; #{date} and user_id in
+                <foreach collection="ids" item="id" index="index" open="(" close=")" separator=",">
+                    #{id}
+                </foreach>
+                order by import_time desc
+                limit 1
+    </select>
+
+    <select id="getDataByDateAndId" resultType="com.cs.mis.entity.ExcelDataEntity">
+        select import_time,center,support,platform_num,`name`,`group`,position_name,
+                member_type,standard_position_name,begin_time,end_time,remark,job_nums
+                from import_data where import_time = #{date} and user_id = #{userId}
+    </select>
+
 </mapper>

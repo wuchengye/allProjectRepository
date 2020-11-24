@@ -43,8 +43,8 @@ public class UserService {
         return pageInfo;
     }
 
-    public List<Map<String,String>> getUserIdAndCenterByType(int userType){
-        List<Map<String, String>> mapList = userMapper.getUserIdAndCenterByType(userType);
+    public List<Map<String,Object>> getUserIdAndCenterByType(int userType){
+        List<Map<String, Object>> mapList = userMapper.getUserIdAndCenterByType(userType);
         return mapList;
     }
 }

@@ -11,6 +11,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+
 /**
  * @author wcy
  */
@@ -34,7 +36,7 @@ public class SelectController {
 
     @GetMapping("/testCron")
     @PassToken
-    public void testCron(){
+    public void testCron() throws IOException {
         reportCrontab.autoCreateDayForms();
     }
 

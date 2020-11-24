@@ -30,4 +30,19 @@ public class SelectService {
         List<ExcelDataEntity> list = selectMapper.getData(selectConditionBody);
         return list;
     }
+
+    public ExcelDataEntity getOneDataByDateAndId(String date,List<String> userIds) {
+        ExcelDataEntity entity = selectMapper.getOneDataByDateAndId(date,userIds);
+        return entity;
+    }
+
+    public ExcelDataEntity getOneDataBeforeDateByIdDesc(String date, List<String> userIds) {
+        ExcelDataEntity entity = selectMapper.getOneDataBeforeDateByIdDesc(date,userIds);
+        return entity;
+    }
+
+    public List<ExcelDataEntity> getDataByDateAndId(String date, String userId) {
+        List<ExcelDataEntity> entityList = selectMapper.getDataByDateAndId(date,userId);
+        return entityList;
+    }
 }

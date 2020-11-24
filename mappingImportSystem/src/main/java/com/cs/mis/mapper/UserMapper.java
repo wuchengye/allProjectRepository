@@ -78,5 +78,5 @@ public interface UserMapper {
      * @param userType 用户类型
      * @return map key---id 、center
      */
-    List<Map<String,String>> getUserIdAndCenterByType(int userType);
+    List<Map<String,Object>> getUserIdAndCenterByType(int userType);
 }
